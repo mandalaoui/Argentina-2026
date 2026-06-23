@@ -6,7 +6,7 @@ import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Flag from "@/components/ui/Flag";
 import DestinationDrawer from "./DestinationDrawer";
-import type { Destination } from "@/data/trip";
+import type { Destination, SubTrip } from "@/data/trip";
 
 function getStatus(dest: Destination): "past" | "today" | "upcoming" {
   const today = new Date().toISOString().split("T")[0];
@@ -29,6 +29,7 @@ interface Props {
 
 export default function DestinationCard({ destination: dest }: Props) {
   const [open, setOpen] = useState(false);
+  const [openSubTrip, setOpenSubTrip] = useState<SubTrip | null>(null);
   const status = getStatus(dest);
 
   return (
@@ -45,13 +46,17 @@ export default function DestinationCard({ destination: dest }: Props) {
             </p>
             <p className="text-xs text-gray-400 mt-1 truncate">{dest.accommodation.name}</p>
 
-            {/* Sub-trips */}
+            {/* Sub-trip tags — clickable */}
             {dest.subTrips && dest.subTrips.length > 0 && (
-              <div className="flex gap-1.5 mt-2 flex-wrap">
+              <div className="flex gap-1.5 mt-2 flex-wrap" onClick={(e) => e.stopPropagation()}>
                 {dest.subTrips.map((sub) => (
-                  <span key={sub.id} className="text-xs bg-argentina-light text-navy px-2 py-0.5 rounded-full">
+                  <button
+                    key={sub.id}
+                    onClick={() => setOpenSubTrip(sub)}
+                    className="text-xs bg-argentina-light text-navy px-2 py-1 rounded-full hover:bg-argentina hover:text-white transition-colors min-h-[28px]"
+                  >
                     📍 {sub.nameHe}
-                  </span>
+                  </button>
                 ))}
               </div>
             )}
@@ -64,11 +69,23 @@ export default function DestinationCard({ destination: dest }: Props) {
         </div>
       </Card>
 
+      {/* Main destination drawer */}
       <DestinationDrawer
         destination={dest}
         isOpen={open}
         onClose={() => setOpen(false)}
       />
+
+      {/* Sub-trip drawers */}
+      {dest.subTrips?.map((sub) => (
+        <DestinationDrawer
+          key={sub.id}
+          destination={sub}
+          isOpen={openSubTrip?.id === sub.id}
+          onClose={() => setOpenSubTrip(null)}
+          isSubTrip
+        />
+      ))}
     </>
   );
 }
