@@ -31,20 +31,20 @@ export default function TodayCard() {
 
       {/* Date */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-1.5">
-        <Calendar size={14} className="text-argentina flex-shrink-0" aria-hidden="true" />
+        <Calendar size={14} className="text-argentina shrink-0" aria-hidden="true" />
         <span>{todayStr}</span>
       </div>
 
       {/* Destination */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-1.5">
-        <MapPin size={14} className="text-argentina flex-shrink-0" aria-hidden="true" />
+        <MapPin size={14} className="text-argentina shrink-0" aria-hidden="true" />
         <Flag code={dest.flag} size={16} />
         <span>{dest.nameHe}</span>
       </div>
 
       {/* Hotel */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-        <Moon size={14} className="text-argentina flex-shrink-0" aria-hidden="true" />
+        <Moon size={14} className="text-argentina shrink-0" aria-hidden="true" />
         <span className="truncate">{dest.accommodation.name}</span>
       </div>
 

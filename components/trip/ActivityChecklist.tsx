@@ -68,7 +68,7 @@ export function ActivityChecklist({
             <button
               onClick={() => toggle(act.id)}
               aria-label={done ? `בטל סימון ${act.nameHe}` : `סמן ${act.nameHe} כבוצע`}
-              className="mt-0.5 flex-shrink-0 text-argentina hover:opacity-70 transition-opacity"
+              className="mt-0.5 shrink-0 text-argentina hover:opacity-70 transition-opacity"
             >
               {done
                 ? <CheckCircle2 size={iconSize} className="text-argentina" />
@@ -95,7 +95,7 @@ export function ActivityChecklist({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`פתח ${act.nameHe} במפה`}
-                className="flex-shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors"
+                className="shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors"
               >
                 <MapPin size={16} />
               </a>
@@ -139,7 +139,7 @@ export function PlaceList({ places, emptyMessage }: PlaceListProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`פתח ${p.name} במפה`}
-            className="flex-shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors mt-0.5"
+            className="shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors mt-0.5"
           >
             <MapPin size={16} />
           </a>

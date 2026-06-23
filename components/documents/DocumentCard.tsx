@@ -57,7 +57,7 @@ export default function DocumentCard({ document, isAvailable }: Props) {
 
       {!canOpen && (
         <div className="flex items-center gap-2 text-sm text-gray-400 py-1">
-          <FileX size={16} className="flex-shrink-0" />
+          <FileX size={16} className="shrink-0" />
           <span>הקובץ טרם הועלה</span>
         </div>
       )}
