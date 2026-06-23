@@ -9,10 +9,34 @@ interface AccordionItemProps {
   icon?: React.ReactNode;
   children: React.ReactNode;
   defaultOpen?: boolean;
+  nested?: boolean;
 }
 
-export function AccordionItem({ title, icon, children, defaultOpen = false }: AccordionItemProps) {
+export function AccordionItem({ title, icon, children, defaultOpen = false, nested = false }: AccordionItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  if (nested) {
+    return (
+      <div className="border border-argentina-light/60 rounded-xl overflow-hidden mb-2">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full flex items-center justify-between px-3 py-2.5 bg-argentina-light/30 hover:bg-argentina-light/60 transition-colors text-right"
+          aria-expanded={isOpen}
+        >
+          <span className="text-sm font-semibold text-navy">{title}</span>
+          <ChevronDown
+            size={15}
+            className={cn("text-argentina transition-transform duration-200 flex-shrink-0", isOpen && "rotate-180")}
+          />
+        </button>
+        {isOpen && (
+          <div className="px-3 pb-3 pt-2 bg-white">
+            {children}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="border border-argentina-light rounded-2xl overflow-hidden mb-3">
@@ -27,10 +51,7 @@ export function AccordionItem({ title, icon, children, defaultOpen = false }: Ac
         </div>
         <ChevronDown
           size={18}
-          className={cn(
-            "text-argentina transition-transform duration-200 flex-shrink-0",
-            isOpen && "rotate-180"
-          )}
+          className={cn("text-argentina transition-transform duration-200 flex-shrink-0", isOpen && "rotate-180")}
         />
       </button>
 

@@ -12,18 +12,27 @@ export interface ApiMatch {
 
 const STAGE_LABELS: Record<string, string> = {
   GROUP_STAGE:    "שלב הבתים",
-  ROUND_OF_16:    "שמינית גמר",
+  LAST_32:        "שלב 32",        // 2026 WC new stage: 48→32
+  LAST_16:        "שמינית גמר",
   QUARTER_FINALS: "רבע גמר",
   SEMI_FINALS:    "חצי גמר",
+  THIRD_PLACE:    "משחק 3/4",
   FINAL:          "גמר",
+  // legacy aliases (not returned by API but kept for static data)
+  "round-of-16":  "שמינית גמר",
+  "quarter-final":"רבע גמר",
+  "semi-final":   "חצי גמר",
+  "final":        "גמר",
 };
 
 const STAGE_ORDER: Record<string, number> = {
-  GROUP_STAGE: 0,
-  ROUND_OF_16: 1,
-  QUARTER_FINALS: 2,
-  SEMI_FINALS: 3,
-  FINAL: 4,
+  GROUP_STAGE:    0,
+  LAST_32:        1,
+  LAST_16:        2,
+  QUARTER_FINALS: 3,
+  SEMI_FINALS:    4,
+  THIRD_PLACE:    5,
+  FINAL:          6,
 };
 
 export function stageLabelHe(stage: string): string {
@@ -93,7 +102,7 @@ export function getArgentinaMatches(matches: ApiMatch[]): ApiMatch[] {
 }
 
 export function getKnockoutMatches(matches: ApiMatch[]): ApiMatch[] {
-  const knockouts = new Set(["ROUND_OF_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL"]);
+  const knockouts = new Set(["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "THIRD_PLACE", "FINAL"]);
   return matches
     .filter((m) => knockouts.has(m.stage))
     .sort((a, b) => {
