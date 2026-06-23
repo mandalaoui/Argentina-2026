@@ -26,24 +26,58 @@
 
 ---
 
+## Travelers
+
+| Name | DOB | Role |
+|---|---|---|
+| Shimon Mandalaoui | 12.07.1972 | אבא |
+| Omer Mandalaoui | 17.03.2000 | בן |
+
+---
+
+## Flights Summary
+
+### International — Air Europa (Issta booking #395561)
+
+| Leg | Flight | Departure | Arrival |
+|---|---|---|---|
+| TLV → MAD | UX1302 | 30.06 16:05 (Ben Gurion) | 30.06 20:20 (Madrid Barajas) |
+| MAD → EZE | UX41 | 30.06 23:55 (Madrid Barajas) | 01.07 07:40 (Ministro Pistarini) |
+| EZE → MAD | UX42 | 12.07 12:10 (Ministro Pistarini) | 13.07 05:10 (Madrid Barajas) |
+| MAD → TLV | UX1301 | 13.07 08:35 (Madrid Barajas) | 13.07 14:10 (Ben Gurion) |
+
+**Baggage:** Hand luggage 1×8kg + checked bag 1×23kg per person (both legs)
+
+### Internal — Aerolineas Argentinas (booking code: LTNKVR)
+
+| Leg | Flight | Departure | Arrival | Aircraft |
+|---|---|---|---|---|
+| EZE → BRC | AR1670 | 06.07 07:45 (Departures Terminal) | 06.07 10:10 (BRC) | Boeing 737-800 |
+| BRC → EZE | AR1925 | 10.07 09:00 (BRC) | 10.07 11:05 (Domestic Arrivals Terminal) | Boeing 737-800 |
+
+**Ticket numbers:** Shimon — 0442167865084 | Omer — 0442167865085
+
+---
+
 ## Trip Timeline
 
-| Date | Destination | Notes |
+| Date | Destination | Flight / Notes |
 |---|---|---|
-| 30.06 | Flight from Israel | Departs TLV at night |
-| 01.07 | Buenos Aires — Arrival | Land at EZE, family visit, check in to hotel |
+| 30.06 | טיסה מישראל | UX1302 יוצא TLV 16:05 |
+| 30.06 | עצירה במדריד | 3:35 שעות המתנה בשדה התעופה |
+| 01.07 | בואנוס איירס — הגעה | UX41 נוחת EZE 07:40, ביקור משפחה, צ'ק-אין למלון 15:00 |
 | 02.07 | Buenos Aires | |
 | 03.07 | Buenos Aires | |
 | 04.07 | Buenos Aires | TODO: Rosario or Colonia day trip? |
-| 05.07 | Buenos Aires | TODO: Rosario or Colonia day trip? |
-| 06.07 | Bariloche — Arrival | Internal flight from Buenos Aires |
+| 05.07 | Buenos Aires | TODO: the other day trip |
+| 06.07 | ברילוצ'ה — הגעה | AR1670 יוצא EZE 07:45, נוחת BRC 10:10 |
 | 07.07 | Bariloche | |
 | 08.07 | Bariloche | |
 | 09.07 | Bariloche | |
-| 10.07 | Buenos Aires — Return | Internal flight back |
+| 10.07 | בואנוס איירס — חזרה | AR1925 יוצא BRC 09:00, נוחת EZE 11:05 |
 | 11.07 | Buenos Aires | |
-| 12.07 | Flight to Israel | Departs EZE |
-| 13.07 | Land in Israel | |
+| 12.07 | טיסה לישראל | UX42 יוצא EZE 12:10 |
+| 13.07 | עצירה במדריד + נחיתה בישראל | UX1301 יוצא MAD 08:35, נוחת TLV 14:10 |
 
 ---
 
@@ -53,9 +87,14 @@
 **Base area:** Palermo Soho
 
 ### Accommodation
-- **Name:** TODO — choose from: Color Botanico / Casa Joseph / Hotel Costa Rica
-- **Address:** TODO
-- **Booking link:** TODO
+- **Name:** City Express Plus by Marriott Buenos Aires Palermo
+- **Address:** Guatemala 4931, Buenos Aires, 1425 Argentina
+- **Check-in:** Wed 01.07 at 15:00
+- **Check-out:** Mon 06.07 at 12:00
+- **Room:** Standard Room, 2 Double Beds, Balcony, City View
+- **Hotel phone:** +54 (1) 145566700
+- **Hotels.com itinerary:** #72075569908945
+- **Note:** VAT exemption available with foreign passport + immigration receipt + non-Argentine card
 
 ---
 
