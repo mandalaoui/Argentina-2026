@@ -105,20 +105,24 @@
 
 ---
 
-## Phase 5 — The Trip Page
+## Phase 5 — The Trip Page ✅ COMPLETE
 
-- [ ] **5.1** — Vertical destination list from `data/trip.ts`
-- [ ] **5.2** — Destination card: name, dates, status badge, hero image placeholder
-- [ ] **5.3** — `DestinationDrawer` — opens as bottom sheet on tap
-- [ ] **5.4** — Internal tabs: לינה / אוכל / פעילויות / ברים / טיפים / תמונות
-- [ ] **5.5** — `ActivityChecklist` — checklist with completion state
+- [x] **5.1** — Vertical destination list from `data/trip.ts`
+- [x] **5.2** — Destination card: name, dates, status badge, flag image, accommodation name
+- [x] **5.3** — `DestinationDrawer` — opens as bottom sheet on tap, hidden with `invisible` when closed
+- [x] **5.4** — Internal tabs: לינה / אוכל / פעילויות / ברים / טיפים / תמונות
+- [x] **5.5** — `ActivityChecklist` — checklist with completion state
   - Checkbox toggles saved to `localStorage`
   - Completion date/time auto-saved when checked
-- [ ] **5.6** — "Open in Maps" button on every activity and restaurant
-- [ ] **5.7** — Tips tab: list of destination-specific tips from `data/trip.ts`
-- [ ] **5.8** — Sub-destinations (Rosario, Colonia) nested inside Buenos Aires
+- [x] **5.6** — "Open in Maps" button on every activity and restaurant
+- [x] **5.7** — Tips tab with destination-specific tips
+- [x] **5.8** — Sub-destinations (Rosario, Colonia) as tags on Buenos Aires card
+- [x] **5.9** — Buenos Aires (return) shares activities/restaurants/bars with first BA visit
+- [x] **fix** — Replaced flag emoji 🇦🇷 with `Flag` component (flagcdn.com w40) — works on all platforms
 
-**Checkpoint:** Tapping a destination opens drawer, checkboxes persist after page reload, all tabs work ✅
+> ⚠️ Photos tab is placeholder — implemented in Phase 11
+
+**Checkpoint:** Destination list renders, drawer opens/closes correctly, checkboxes persist in localStorage ✅
 
 ---
 
@@ -291,7 +295,7 @@
 | 2 — UI Components | ✅ Complete | 7 components verified |
 | 3 — Data Layer | ✅ Complete | 6 data files, 0 TS errors |
 | 4 — Home Page | 🔲 Next | |
-| 5 — Trip Page | 🔲 | |
+| 5 — Trip Page | ✅ Complete | Drawer, checklist, localStorage |
 | 6 — Documents | 🔲 | Supabase setup needed |
 | 7 — Info Page | 🔲 | |
 | 8 — Spanish | 🔲 | |
