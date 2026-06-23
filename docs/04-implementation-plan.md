@@ -16,93 +16,73 @@
 
 ## Pre-Development Checklist — Complete Before Coding
 
-- [ ] Choose hotel in Buenos Aires and provide details
-- [ ] Send Bariloche accommodation details
-- [ ] Register for ExchangeRate-API free key
-- [ ] Get Google My Maps embed URL
-- [ ] Scan / photograph flight tickets and passports
-- [ ] Decide on documents password
-- [ ] Create Supabase project
-- [ ] Decide what to do on 04.07 and 05.07 (Rosario or Colonia)
-- [ ] Confirm Buquebus booking for Colonia
+- [x] Choose hotel in Buenos Aires → **City Express Plus by Marriott, Guatemala 4931**
+- [ ] Send Bariloche accommodation details → **not booked yet**
+- [x] Register for ExchangeRate-API free key → **done, in .env.local**
+- [x] Get Google My Maps embed URL → **done, in .env.local**
+- [ ] Scan / photograph flight tickets and passports → **flight docs located, passports pending**
+- [x] Decide on documents password → **done, in .env.local**
+- [x] Create Supabase project → **done, in .env.local**
+- [ ] Decide what to do on 04.07 and 05.07 (Rosario or Colonia) → **open**
+- [ ] Confirm Buquebus booking for Colonia → **open**
 
 ---
 
-## Phase 0 — Environment Setup
+## Phase 0 — Environment Setup ✅ COMPLETE
 
-- [ ] **0.1** — Bootstrap project:
-  ```bash
-  npx create-next-app@latest argentina2026 --typescript --tailwind --app
-  ```
-- [ ] **0.2** — Install dependencies:
-  ```bash
-  npm install @supabase/supabase-js lucide-react next-pwa
-  npx shadcn@latest init
-  ```
-- [ ] **0.3** — Set `dir="rtl"` and `lang="he"` in `app/layout.tsx`
-- [ ] **0.4** — Add Heebo font via Google Fonts in `layout.tsx`
-- [ ] **0.5** — Configure Argentina color palette in `tailwind.config.ts`:
-  ```js
-  colors: {
-    argentina: '#74ACDF',
-    'argentina-light': '#E8F4FD',
-    sun: '#F6C90E',
-    navy: '#2C5282',
-  }
-  ```
-- [ ] **0.6** — Create `.env.local` with all variable keys (empty values for now)
-- [ ] **0.7** — Create folder structure: `app/`, `components/`, `data/`, `lib/`
-- [ ] **0.8** — `git init` + push to GitHub
-- [ ] **0.9** — Connect to Vercel + first empty deploy
+- [x] **0.1** — Bootstrap Next.js 16 project (TypeScript + Tailwind v4 + App Router)
+- [x] **0.2** — Install dependencies: @supabase/supabase-js, lucide-react, next-pwa, shadcn/ui
+- [x] **0.3** — Set `dir="rtl"` and `lang="he"` in `app/layout.tsx`
+- [x] **0.4** — Add Heebo font via Google Fonts
+- [x] **0.5** — Configure Argentina color palette in `globals.css` (Tailwind v4 CSS-based config)
+- [x] **0.6** — Create `.env.local` with all variable keys — fully populated
+- [x] **0.7** — Create folder structure: `app/`, `components/`, `data/`, `lib/`, `docs/`
+- [x] **0.8** — `git init` + committed to local repo
+- [ ] **0.9** — Connect to Vercel + first deploy → **pending — do before trip**
 
-**Checkpoint:** App is live on Vercel, opens without errors ✅
+> ⚠️ Note: Tailwind v4 uses CSS-based config (globals.css @theme), not tailwind.config.ts
+
+**Checkpoint:** Build passes, app opens, RTL + Heebo + Argentina colors confirmed ✅
 
 ---
 
-## Phase 1 — Layout & Navigation
+## Phase 1 — Layout & Navigation ✅ COMPLETE
 
-- [ ] **1.1** — Create `components/layout/Navbar.tsx`
-  - Fixed topbar, Argentina blue background
-  - App name + 🇦🇷 flag in center
-  - Hamburger button on the left (RTL visual right)
-- [ ] **1.2** — Create `components/layout/HamburgerMenu.tsx`
-  - Drawer opens from the right (RTL)
-  - List of 7 pages with icons
-  - Dark overlay behind drawer
-  - Closes on ✕ click or overlay tap
-- [ ] **1.3** — Create route stubs for all 7 pages (placeholder heading only):
-  - `/` `/trip` `/map` `/documents` `/info` `/spanish` `/worldcup`
-- [ ] **1.4** — Each page shows its own name as placeholder
-- [ ] **1.5** — Desktop: standard topbar with horizontal links from `md:` breakpoint
+- [x] **1.1** — `components/layout/Navbar.tsx` — fixed topbar, Argentina blue, logo + flag
+- [x] **1.2** — `components/layout/HamburgerMenu.tsx` — RTL drawer, 7 pages with icons, overlay, ESC closes
+- [x] **1.3** — Route stubs for all 7 pages created
+- [x] **1.4** — Each page shows placeholder heading
+- [x] **1.5** — Desktop: horizontal topbar links from `md:` breakpoint, active page highlighted
 
-**Checkpoint:** All 7 pages navigate correctly, drawer opens/closes, RTL is correct ✅
+**Checkpoint:** All 7 pages navigate, drawer opens/closes from right (RTL correct), verified on mobile preview ✅
 
 ---
 
-## Phase 2 — Base UI Components
+## Phase 2 — Base UI Components ✅ COMPLETE
 
-- [ ] **2.1** — `components/ui/Card.tsx` — base card wrapper
-- [ ] **2.2** — `components/ui/Badge.tsx` — status tag (עבר / היום / בקרוב / חשוב)
-- [ ] **2.3** — `components/ui/Drawer.tsx` — bottom sheet / side panel
-- [ ] **2.4** — `components/ui/Modal.tsx` — centered overlay
-- [ ] **2.5** — `components/ui/Accordion.tsx` — collapsible section
-- [ ] **2.6** — `components/ui/Tabs.tsx` — horizontal tab navigation
-- [ ] **2.7** — `components/ui/EmergencyCard.tsx` — emergency contact card with action buttons
+- [x] **2.1** — `components/ui/Card.tsx` — base card with hover + click support
+- [x] **2.2** — `components/ui/Badge.tsx` — status tags: עבר / היום / בקרוב / חשוב
+- [x] **2.3** — `components/ui/Drawer.tsx` — bottom sheet mobile, centered modal desktop, ESC + scroll lock
+- [x] **2.4** — `components/ui/Modal.tsx` — centered overlay, ESC close, scroll lock
+- [x] **2.5** — `components/ui/Accordion.tsx` — collapsible with chevron animation
+- [x] **2.6** — `components/ui/Tabs.tsx` — horizontal scrollable tabs, active highlight
+- [x] **2.7** — `components/ui/EmergencyCard.tsx` — red card with Call / Copy / Maps buttons (min 44px touch)
 
-**Checkpoint:** Each component renders correctly on mobile and desktop ✅
+**Checkpoint:** All components rendered and verified in browser preview ✅
 
 ---
 
-## Phase 3 — Data Layer
+## Phase 3 — Data Layer ✅ COMPLETE
 
-- [ ] **3.1** — `data/trip.ts` — all destinations, accommodation, activities, restaurants, bars, tips, sub-trips
-- [ ] **3.2** — `data/emergency.ts` — all emergency contacts
-- [ ] **3.3** — `data/info.ts` — packing list, apps, money tips, communication
-- [ ] **3.4** — `data/phrases.ts` — full Hebrew ↔ Spanish phrasebook by category
-- [ ] **3.5** — `data/worldcup.ts` — knockout schedule + Argentina matches
-- [ ] **3.6** — `data/songs.ts` — World Cup songs with Spanish lyrics, Hebrew translations, YouTube links
+- [x] **3.1** — `data/trip.ts` — 3 destinations + 2 sub-trips (Rosario, Colonia), accommodation, activities, restaurants, bars, tips, helper functions
+- [x] **3.2** — `data/emergency.ts` — 5 emergency contacts (police, ambulance, embassy, hospital, insurance)
+- [x] **3.3** — `data/info.ts` — 25 packing items, 6 apps, 6 money tips
+- [x] **3.4** — `data/phrases.ts` — 46 phrases across 7 categories with transliteration
+- [x] **3.5** — `data/worldcup.ts` — knockout schedule, Argentina matches, 3 watching spots
+  > ⚠️ Match data is placeholder — update with real schedule as tournament progresses
+- [x] **3.6** — `data/songs.ts` — 5 World Cup songs with Spanish lyrics + Hebrew translations + YouTube links
 
-**Checkpoint:** TypeScript compiles with no errors, all data imports cleanly ✅
+**Checkpoint:** TypeScript build passes with 0 errors ✅
 
 ---
 
@@ -234,7 +214,7 @@
 
 - [ ] **12.1** — Create `public/manifest.json` with name, icons, RTL, theme color `#74ACDF`
 - [ ] **12.2** — Create PWA icon assets (192×192, 512×512) in Argentina blue with flag
-- [ ] **12.3** — Configure `next-pwa` in `next.config.js`
+- [ ] **12.3** — Configure `next-pwa` in `next.config.ts`
 - [ ] **12.4** — Test "Add to Home Screen" on iPhone Safari
 - [ ] **12.5** — Verify offline: Spanish phrasebook loads without internet
 
@@ -259,7 +239,7 @@
 
 ## Mobile Testing Checklist
 
-- [ ] Hamburger nav works on tap
+- [x] Hamburger nav works on tap — verified in preview
 - [ ] All buttons are at least 48px tall
 - [ ] No horizontal scroll on any page
 - [ ] Screen doesn't shift when keyboard opens
@@ -268,18 +248,18 @@
 - [ ] PDFs open in mobile browser
 - [ ] Countdown calculates correctly
 - [ ] Match times display in GMT-3 (Argentina time)
-- [ ] Drawer closes on outside tap
+- [x] Drawer closes on outside tap — verified in preview
 
 ---
 
 ## Deployment Checklist
 
 - [ ] All environment variables added to Vercel project settings
-- [ ] `.env.local` is in `.gitignore`
-- [ ] `NEXT_PUBLIC_DOCS_PASSWORD` is set
+- [x] `.env.local` is in `.gitignore`
+- [x] `NEXT_PUBLIC_DOCS_PASSWORD` is set
 - [ ] Supabase buckets are configured (private/public correctly)
 - [ ] HTTPS is active (automatic on Vercel)
-- [ ] Build passes with no TypeScript errors
+- [x] Build passes with no TypeScript errors
 - [ ] Vercel domain confirmed and accessible
 
 ---
@@ -304,19 +284,19 @@
 
 ## Phase Summary
 
-| Phase | Priority | Estimated Time |
+| Phase | Status | Notes |
 |---|---|---|
-| 0–2 (Setup + Layout + Components) | Critical | ~3 hours |
-| 3 (Data files) | Critical | ~2 hours |
-| 4 (Home page) | Critical | ~3 hours |
-| 5 (Trip + checklists) | Critical | ~4 hours |
-| 6 (Documents) | Critical | ~3 hours |
-| 7 (Useful Info + Emergency) | Critical | ~2 hours |
-| 8 (Spanish) | High | ~2 hours |
-| 9 (Map) | High | ~30 minutes |
-| 10 (World Cup) | High | ~2 hours |
-| 11 (Photo uploads) | Medium | ~3 hours |
-| 12 (PWA) | Medium | ~1 hour |
-| 13 (QA) | Critical | ~2 hours |
-
-**Total v1 estimate: ~28–30 hours of development**
+| 0 — Setup | ✅ Complete | Tailwind v4, Heebo, RTL, colors |
+| 1 — Navbar | ✅ Complete | Mobile drawer + desktop topbar |
+| 2 — UI Components | ✅ Complete | 7 components verified |
+| 3 — Data Layer | ✅ Complete | 6 data files, 0 TS errors |
+| 4 — Home Page | 🔲 Next | |
+| 5 — Trip Page | 🔲 | |
+| 6 — Documents | 🔲 | Supabase setup needed |
+| 7 — Info Page | 🔲 | |
+| 8 — Spanish | 🔲 | |
+| 9 — Map | 🔲 | env var ready |
+| 10 — World Cup | 🔲 | Match data = placeholders |
+| 11 — Photos | 🔲 | Supabase setup needed |
+| 12 — PWA | 🔲 | |
+| 13 — QA | 🔲 | |
