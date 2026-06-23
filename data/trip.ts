@@ -32,7 +32,7 @@ export interface Destination {
   name: string;
   nameHe: string;
   country: "Argentina" | "Uruguay";
-  flag: string;
+  flag: "AR" | "UY";
   startDate: string;
   endDate: string;
   nights: number;
@@ -58,7 +58,7 @@ export const destinations: Destination[] = [
     name: "Buenos Aires",
     nameHe: "בואנוס איירס",
     country: "Argentina",
-    flag: "🇦🇷",
+    flag: "AR",
     startDate: "2026-07-01",
     endDate: "2026-07-06",
     nights: 5,
@@ -323,7 +323,7 @@ export const destinations: Destination[] = [
     name: "San Carlos de Bariloche",
     nameHe: "ברילוצ'ה",
     country: "Argentina",
-    flag: "🇦🇷",
+    flag: "AR",
     startDate: "2026-07-06",
     endDate: "2026-07-10",
     nights: 4,
@@ -402,7 +402,7 @@ export const destinations: Destination[] = [
     name: "Buenos Aires",
     nameHe: "בואנוס איירס (חזרה)",
     country: "Argentina",
-    flag: "🇦🇷",
+    flag: "AR",
     startDate: "2026-07-10",
     endDate: "2026-07-12",
     nights: 2,

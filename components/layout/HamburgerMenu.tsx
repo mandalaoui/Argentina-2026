@@ -1,6 +1,7 @@
 "use client";
 
 import { X, Home, Map, MapPin, FileText, Info, MessageSquare, Trophy } from "lucide-react";
+import Flag from "@/components/ui/Flag";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -44,7 +45,9 @@ export default function HamburgerMenu({ isOpen, onClose }: HamburgerMenuProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-4 border-b border-argentina-light">
-          <span className="text-lg font-bold text-navy">Argentina 2026 🇦🇷</span>
+          <span className="text-lg font-bold text-navy flex items-center gap-2">
+            Argentina 2026 <Flag code="AR" size={20} />
+          </span>
           <button
             onClick={onClose}
             aria-label="סגור תפריט"

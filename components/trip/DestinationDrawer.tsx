@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Hotel, Utensils, Star, Beer, Lightbulb, Camera, MapPin, ExternalLink } from "lucide-react";
 import type { Destination, SubTrip } from "@/data/trip";
+import Flag from "@/components/ui/Flag";
 import { ActivityChecklist, PlaceList } from "./ActivityChecklist";
 
 const TABS = [
@@ -40,10 +41,13 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
       <div
         role="dialog"
         aria-modal="true"
-        className={`fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl flex flex-col transition-transform duration-300 ease-in-out
+        className={`fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl flex flex-col transition-all duration-300 ease-in-out
           max-h-[92vh]
           md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto md:w-full md:max-w-2xl md:rounded-2xl md:max-h-[85vh]
-          ${isOpen ? "translate-y-0 md:-translate-x-1/2 md:-translate-y-1/2" : "translate-y-full md:translate-y-full"}`}
+          ${isOpen
+            ? "translate-y-0 md:-translate-x-1/2 md:-translate-y-1/2 visible"
+            : "translate-y-full md:-translate-x-1/2 md:translate-y-full invisible pointer-events-none"
+          }`}
       >
         {/* Handle */}
         <div className="md:hidden flex justify-center pt-3 pb-1 flex-shrink-0">
@@ -53,8 +57,9 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-argentina-light flex-shrink-0">
           <div>
-            <h2 className="text-lg font-bold text-navy">
-              {isSubTrip ? sub.nameHe : `${dest.flag} ${dest.nameHe}`}
+            <h2 className="text-lg font-bold text-navy flex items-center gap-2">
+              {!isSubTrip && <Flag code={dest.flag} size={20} />}
+              {isSubTrip ? sub.nameHe : dest.nameHe}
             </h2>
             {!isSubTrip && (
               <p className="text-xs text-gray-400 mt-0.5">

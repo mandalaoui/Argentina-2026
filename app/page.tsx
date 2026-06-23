@@ -7,6 +7,7 @@ import WeatherCard from "@/components/home/WeatherCard";
 import CurrencyCard from "@/components/home/CurrencyCard";
 import NextMatchCard from "@/components/home/NextMatchCard";
 import Card from "@/components/ui/Card";
+import Flag from "@/components/ui/Flag";
 
 const TRIP_START = new Date("2026-07-01");
 const TRIP_END   = new Date("2026-07-12T23:59:59");
@@ -33,8 +34,9 @@ export default function HomePage() {
 
       {/* Header */}
       <div className="pt-2 pb-1">
-        <h1 className="text-2xl font-bold text-navy">
-          {onTrip ? "הטיול שלנו 🇦🇷" : "Argentina 2026 Hub 🇦🇷"}
+        <h1 className="text-2xl font-bold text-navy flex items-center gap-2">
+          {onTrip ? "הטיול שלנו" : "Argentina 2026 Hub"}
+          <Flag code="AR" size={26} />
         </h1>
         <p className="text-sm text-gray-400 mt-0.5">
           {onTrip ? "מה קורה היום" : "הכנות לטיול"}

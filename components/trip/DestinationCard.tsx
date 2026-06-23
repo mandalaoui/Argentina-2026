@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
+import Flag from "@/components/ui/Flag";
 import DestinationDrawer from "./DestinationDrawer";
 import type { Destination } from "@/data/trip";
 
@@ -36,7 +37,7 @@ export default function DestinationCard({ destination: dest }: Props) {
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xl">{dest.flag}</span>
+              <Flag code={dest.flag} size={22} />
               <h3 className="font-bold text-navy text-base truncate">{dest.nameHe}</h3>
             </div>
             <p className="text-sm text-gray-500">

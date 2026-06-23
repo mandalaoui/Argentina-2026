@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
+import Flag from "@/components/ui/Flag";
 
 const navItems = [
   { href: "/",          label: "בית" },
@@ -36,7 +37,8 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
-            🇦🇷 Argentina 2026
+            <Flag code="AR" size={22} />
+            Argentina 2026
           </Link>
 
           {/* Desktop nav */}
