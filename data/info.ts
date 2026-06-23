@@ -19,6 +19,12 @@ export interface MoneyTip {
   body: string;
 }
 
+export interface CommunicationTip {
+  id: string;
+  title: string;
+  body: string;
+}
+
 export const packingList: PackingItem[] = [
   // בגדים
   { id: "shorts", label: "מכנסיים קצרים x2" },
@@ -133,5 +139,33 @@ export const moneyTips: MoneyTip[] = [
     id: "vat",
     title: "פטור ממע\"מ במלון",
     body: "הצגת דרכון זר + כרטיס אשראי לא ארגנטינאי → פטור ממע\"מ 21% בלינה.",
+  },
+];
+
+export const communicationTips: CommunicationTip[] = [
+  {
+    id: "esim",
+    title: "eSIM / SIM מקומי",
+    body: "מומלץ לרכוש eSIM לפני הטיול (Airalo, Holafly וכו') או SIM מקומי בשדה התעופה. פרטי הספק יתעדכנו לפני היציאה.",
+  },
+  {
+    id: "wifi",
+    title: "WiFi",
+    body: "במלון יש WiFi חינם. בבתי קפה ומסעדות — WiFi לרוב זמין, אך לא תמיד יציב.",
+  },
+  {
+    id: "whatsapp",
+    title: "WhatsApp",
+    body: "האפליקציה הפופולרית ביותר בארגנטינה. מומלץ להוריד לפני הטיול ולהשתמש ב-WiFi או ב-eSIM.",
+  },
+  {
+    id: "roaming",
+    title: "רואמינג ישראלי",
+    body: "לפני הטיסה — לבדוק מסלול רואמינג אצל הספק. לעיתים יקר יותר מ-eSIM מקומי.",
+  },
+  {
+    id: "hotel-phone",
+    title: "טלפון המלון בבואנוס",
+    body: "City Express Plus Palermo: +54 (1) 145566700 — לשמור במועדפים.",
   },
 ];

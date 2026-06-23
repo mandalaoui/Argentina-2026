@@ -146,16 +146,16 @@
 
 ---
 
-## Phase 7 — Useful Info Page
+## Phase 7 — Useful Info Page ✅ COMPLETE (pending: insurance emergency number, SIM provider details)
 
-- [ ] **7.1** — Accordion sections: ציוד / אפליקציות / כסף / תקשורת / חירום
-- [ ] **7.2** — Packing checklist with `localStorage` persistence
-- [ ] **7.3** — Apps list with download links (App Store / Play Store deep links)
-- [ ] **7.4** — `EmergencyCard` for each emergency contact:
+- [x] **7.1** — Accordion sections: ציוד / אפליקציות / כסף / תקשורת / חירום
+- [x] **7.2** — Packing checklist with `localStorage` persistence
+- [x] **7.3** — Apps list with download links (App Store / Play Store deep links)
+- [x] **7.4** — `EmergencyCard` for each emergency contact:
   - 📞 Call button (`tel:` link — activates phone dialer on mobile)
   - 📋 Copy number button
   - 📍 Maps button (where applicable)
-- [ ] **7.5** — Emergency section: distinct red background (`bg-red-50 border-red-200`)
+- [x] **7.5** — Emergency section: distinct red background (`bg-red-50 border-red-200`)
 
 **Checkpoint:** Packing checkboxes persist, call button works on mobile ✅
 
@@ -297,7 +297,7 @@
 | 4 — Home Page | ✅ Complete | Live APIs: weather, currency, football |
 | 5 — Trip Page | ✅ Complete | Drawer, checklist, localStorage |
 | 6 — Documents | ✅ Complete | 4/5 docs live · pending: BRC→EZE, insurance, passports |
-| 7 — Info Page | 🔲 | |
+| 7 — Info Page | ✅ Complete | Packing checklist + emergency cards · pending: insurance #, SIM provider |
 | 8 — Spanish | 🔲 | |
 | 9 — Map | 🔲 | env var ready |
 | 10 — World Cup | 🔲 | Match data = placeholders |
