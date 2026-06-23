@@ -8,14 +8,12 @@ import CurrencyCard from "@/components/home/CurrencyCard";
 import NextMatchCard from "@/components/home/NextMatchCard";
 import Card from "@/components/ui/Card";
 import Flag from "@/components/ui/Flag";
-
-const TRIP_START = new Date("2026-07-01");
-const TRIP_END   = new Date("2026-07-12T23:59:59");
+import { getTripDayInfo } from "@/data/trip";
 
 function isOnTrip() {
-  const now = new Date();
-  return now >= TRIP_START && now <= TRIP_END;
+  return getTripDayInfo() !== null;
 }
+
 
 function LoadingCard() {
   return (

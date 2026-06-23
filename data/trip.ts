@@ -427,8 +427,146 @@ export const destinations: Destination[] = [
   },
 ];
 
+// ─── Daily plan ──────────────────────────────────────────────────────────────
+
+export type DayPlanEntry = string | Activity;
+
+/** Activity IDs reference items from destinations / sub-trips; inline Activity = day-only tasks */
+export const tripDayPlans: Record<string, DayPlanEntry[]> = {
+  "2026-07-01": [
+    {
+      id: "day1-family",
+      nameHe: "ביקור משפחה",
+      name: "Family visit",
+      category: "culture",
+      mapsUrl: "https://maps.google.com/?q=Buenos+Aires",
+      notes: "יום ראשון להגעה",
+    },
+    {
+      id: "day1-checkin",
+      nameHe: "צ'ק-אין למלון",
+      name: "Hotel check-in",
+      category: "transport",
+      mapsUrl: "https://maps.google.com/?q=Guatemala+4931+Buenos+Aires",
+      notes: "15:00",
+    },
+  ],
+  "2026-07-02": ["ba-recoleta-cemetery", "ba-ateneo", "ba-caminito"],
+  "2026-07-03": ["ba-colón", "ba-plaza-mayo", "ba-casa-rosada", "ba-obelisco"],
+  "2026-07-04": ["barrio-historico", "lighthouse", "suspiros"],
+  "2026-07-05": ["flag-monument", "independencia-park", "parana-river", "newells"],
+  "2026-07-06": [
+    {
+      id: "day6-flight-brc",
+      nameHe: "טיסה לברילוצ'ה",
+      name: "Flight EZE → BRC",
+      category: "transport",
+      mapsUrl: "https://maps.google.com/?q=Aeropuerto+Internacional+Ezeiza",
+      notes: "AR1670 — יציאה 07:45",
+    },
+    "brc-campanario",
+  ],
+  "2026-07-07": ["brc-circuito-chico", "brc-llao-llao"],
+  "2026-07-08": ["brc-catedral", "brc-nahuel-huapi"],
+  "2026-07-09": ["brc-circuito-chico"],
+  "2026-07-10": [
+    {
+      id: "day10-flight-ba",
+      nameHe: "טיסה חזרה לבואנוס איירס",
+      name: "Flight BRC → EZE",
+      category: "transport",
+      mapsUrl: "https://maps.google.com/?q=Aeropuerto+San+Carlos+de+Bariloche",
+      notes: "AR1925 — יציאה 09:00",
+    },
+    {
+      id: "day10-checkin",
+      nameHe: "צ'ק-אין למלון",
+      name: "Hotel check-in",
+      category: "transport",
+      mapsUrl: "https://maps.google.com/?q=Guatemala+4931+Buenos+Aires",
+    },
+  ],
+  "2026-07-11": ["ba-florida", "ba-bombonera"],
+  "2026-07-12": [
+    {
+      id: "day12-checkout",
+      nameHe: "צ'ק-אאוט מהמלון",
+      name: "Hotel check-out",
+      category: "transport",
+      mapsUrl: "https://maps.google.com/?q=Guatemala+4931+Buenos+Aires",
+      notes: "12:00 — הטיסה ב-12:10",
+    },
+    {
+      id: "day12-flight-home",
+      nameHe: "טיסה לישראל",
+      name: "Flight EZE → TLV",
+      category: "transport",
+      mapsUrl: "https://maps.google.com/?q=Aeropuerto+Internacional+Ezeiza",
+      notes: "UX42 — יציאה 12:10",
+    },
+  ],
+};
+
+const TRIP_START = "2026-07-01";
+const TRIP_END   = "2026-07-12";
+
+function getTodayDateString(): string {
+  if (process.env.NODE_ENV === "development") {
+    const devDate = process.env.NEXT_PUBLIC_DEV_TODAY_DATE;
+    if (devDate && /^\d{4}-\d{2}-\d{2}$/.test(devDate)) {
+      return devDate;
+    }
+  }
+  return new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD local time
+}
+
+/** Hebrew long-form date for the effective "today" (respects dev override). */
+export function getTodayDisplayDate(): string {
+  const dateStr = getTodayDateString();
+  return new Date(dateStr + "T12:00:00").toLocaleDateString("he-IL", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+}
+
+function buildActivityRegistry(): Map<string, Activity> {
+  const registry = new Map<string, Activity>();
+  for (const dest of destinations) {
+    for (const act of dest.activities) registry.set(act.id, act);
+    for (const sub of dest.subTrips ?? []) {
+      for (const act of sub.activities) registry.set(act.id, act);
+    }
+  }
+  return registry;
+}
+
+const activityRegistry = buildActivityRegistry();
+
+function resolveDayPlanEntries(entries: DayPlanEntry[]): Activity[] {
+  return entries.flatMap((entry) => {
+    if (typeof entry === "string") {
+      const act = activityRegistry.get(entry);
+      return act ? [act] : [];
+    }
+    return [entry];
+  });
+}
+
+export function getPlannedActivitiesForDate(date: string): Activity[] {
+  const entries = tripDayPlans[date];
+  if (!entries?.length) return [];
+  return resolveDayPlanEntries(entries);
+}
+
+export function getTodayPlannedActivities(): Activity[] {
+  const today = getTodayDateString();
+  if (today < TRIP_START || today > TRIP_END) return [];
+  return getPlannedActivitiesForDate(today);
+}
+
 export function getCurrentDestination(): Destination | null {
-  const today = new Date().toISOString().split("T")[0];
+  const today = getTodayDateString();
   return (
     destinations.find(
       (d) => d.startDate <= today && today <= d.endDate
@@ -437,14 +575,16 @@ export function getCurrentDestination(): Destination | null {
 }
 
 export function getTripDayInfo(): { day: number; total: number } | null {
-  const tripStart = new Date("2026-07-01");
-  const tripEnd = new Date("2026-07-12");
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const todayStr = getTodayDateString();
 
-  if (today < tripStart || today > tripEnd) return null;
+  if (todayStr < TRIP_START || todayStr > TRIP_END) return null;
 
-  const day = Math.floor((today.getTime() - tripStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-  const total = Math.floor((tripEnd.getTime() - tripStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const start = new Date(TRIP_START + "T12:00:00"); // noon to avoid DST edge cases
+  const now   = new Date(todayStr   + "T12:00:00");
+  const end   = new Date(TRIP_END   + "T12:00:00");
+
+  const day   = Math.round((now.getTime() - start.getTime()) / msPerDay) + 1;
+  const total = Math.round((end.getTime() - start.getTime()) / msPerDay) + 1;
   return { day, total };
 }

@@ -121,23 +121,28 @@
 
 ---
 
-## Phase 6 — Documents Page
+## Phase 6 — Documents Page ✅ COMPLETE (pending uploads: insurance, passports, BRC→EZE flight)
 
-- [ ] **6.1** — `PasswordGate` component
+- [x] **6.1** — `PasswordGate` component
   - Full-screen lock until password entered
   - Stores auth state in `sessionStorage`
   - No document content visible before unlock
-- [ ] **6.2** — Supabase project setup:
-  - Create `documents` bucket (Private)
-  - Create `photos` bucket (Public)
-  - Configure CORS for the Vercel domain
-- [ ] **6.3** — Accordion categories: טיסות / ביטוח / דרכונים / מלונות / נוספים
-- [ ] **6.4** — `DocumentCard`: name, date, "חשוב" badge, view + download buttons
-- [ ] **6.5** — Signed URL generation for private PDF viewing (1-hour expiry)
-- [ ] **6.6** — "נעל מחדש" button in page footer
-- [ ] **6.7** — Upload initial documents to Supabase (flight tickets first)
+- [x] **6.2** — Supabase project setup:
+  - Create `documents` bucket (Private) ✅
+  - Create `photos` bucket (Public) — SQL ready, verify in dashboard
+  - Configure CORS for the Vercel domain — add production domain before deploy
+  > Setup script: `scripts/setup-supabase-storage.sql`
+- [x] **6.3** — Accordion categories: טיסות / ביטוח / דרכונים / מלונות / נוספים
+- [x] **6.4** — `DocumentCard`: name, date, "חשוב" badge, view + download buttons
+- [x] **6.5** — Signed URL generation for private PDF viewing (1-hour expiry)
+- [x] **6.6** — "נעל מחדש" button in page footer
+- [x] **6.7** — Upload initial documents to Supabase (flight tickets first)
+  > 4 files uploaded: 3 flights + 1 hotel · pending: BRC→EZE, insurance, passports
+- [x] **6.8** — Connect `data/documents.ts` storage paths to actual Supabase files
+  - Live availability check via `listAvailableStoragePaths()` on page load
+  - Missing files show "הקובץ טרם הועלה" (no broken buttons)
 
-**Checkpoint:** Documents are hidden without password, PDF opens on tap, download works ✅
+**Checkpoint:** Password gate ✅ · PDF view/download works for uploaded files ✅ · Missing files show clean fallback ✅
 
 ---
 
@@ -256,7 +261,7 @@
 - [ ] All environment variables added to Vercel project settings
 - [x] `.env.local` is in `.gitignore`
 - [x] `NEXT_PUBLIC_DOCS_PASSWORD` is set
-- [ ] Supabase buckets are configured (private/public correctly)
+- [x] Supabase buckets are configured (private/public correctly) — `documents` bucket live; verify `photos` + CORS before deploy
 - [ ] HTTPS is active (automatic on Vercel)
 - [x] Build passes with no TypeScript errors
 - [ ] Vercel domain confirmed and accessible
@@ -291,7 +296,7 @@
 | 3 — Data Layer | ✅ Complete | 6 data files, 0 TS errors |
 | 4 — Home Page | ✅ Complete | Live APIs: weather, currency, football |
 | 5 — Trip Page | ✅ Complete | Drawer, checklist, localStorage |
-| 6 — Documents | 🔲 | Supabase setup needed |
+| 6 — Documents | ✅ Complete | 4/5 docs live · pending: BRC→EZE, insurance, passports |
 | 7 — Info Page | 🔲 | |
 | 8 — Spanish | 🔲 | |
 | 9 — Map | 🔲 | env var ready |

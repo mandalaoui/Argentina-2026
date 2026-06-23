@@ -41,38 +41,47 @@ function useCheckStorage(storageKey: string) {
 interface ActivityChecklistProps {
   activities: Activity[];
   storageKey: string;
+  emptyMessage?: string;
+  compact?: boolean;
 }
 
-export function ActivityChecklist({ activities, storageKey }: ActivityChecklistProps) {
+export function ActivityChecklist({
+  activities,
+  storageKey,
+  emptyMessage = "אין פעילויות רשומות",
+  compact = false,
+}: ActivityChecklistProps) {
   const { checks, toggle } = useCheckStorage(storageKey);
 
   if (activities.length === 0)
-    return <p className="text-sm text-gray-400">אין פעילויות רשומות</p>;
+    return <p className="text-sm text-gray-400">{emptyMessage}</p>;
+
+  const iconSize = compact ? 18 : 22;
 
   return (
-    <ul className="space-y-2">
+    <ul className={compact ? "space-y-1.5" : "space-y-2"}>
       {activities.map((act) => {
         const done = checks[act.id]?.completed ?? false;
         const doneAt = checks[act.id]?.completedAt;
         return (
-          <li key={act.id} className="flex items-start gap-3">
+          <li key={act.id} className={`flex items-start ${compact ? "gap-2" : "gap-3"}`}>
             <button
               onClick={() => toggle(act.id)}
               aria-label={done ? `בטל סימון ${act.nameHe}` : `סמן ${act.nameHe} כבוצע`}
               className="mt-0.5 flex-shrink-0 text-argentina hover:opacity-70 transition-opacity"
             >
               {done
-                ? <CheckCircle2 size={22} className="text-argentina" />
-                : <Circle size={22} className="text-gray-300" />}
+                ? <CheckCircle2 size={iconSize} className="text-argentina" />
+                : <Circle size={iconSize} className="text-gray-300" />}
             </button>
             <div className="flex-1 min-w-0">
-              <p className={`text-sm font-medium leading-snug ${done ? "line-through text-gray-400" : "text-navy"}`}>
+              <p className={`${compact ? "text-xs" : "text-sm"} font-medium leading-snug ${done ? "line-through text-gray-400" : "text-navy"}`}>
                 {act.nameHe}
               </p>
               {act.notes && !done && (
-                <p className="text-xs text-gray-400 mt-0.5">{act.notes}</p>
+                <p className={`${compact ? "text-[11px]" : "text-xs"} text-gray-400 mt-0.5`}>{act.notes}</p>
               )}
-              {done && doneAt && (
+              {!compact && done && doneAt && (
                 <p className="text-xs text-gray-400 mt-0.5">
                   בוצע: {new Date(doneAt).toLocaleDateString("he-IL", {
                     day: "numeric", month: "short", hour: "2-digit", minute: "2-digit",
@@ -80,15 +89,17 @@ export function ActivityChecklist({ activities, storageKey }: ActivityChecklistP
                 </p>
               )}
             </div>
-            <a
-              href={act.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`פתח ${act.nameHe} במפה`}
-              className="flex-shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors"
-            >
-              <MapPin size={16} />
-            </a>
+            {!compact && (
+              <a
+                href={act.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`פתח ${act.nameHe} במפה`}
+                className="flex-shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors"
+              >
+                <MapPin size={16} />
+              </a>
+            )}
           </li>
         );
       })}
