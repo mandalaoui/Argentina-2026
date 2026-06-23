@@ -1,9 +1,6 @@
-import MapEmbed from "@/components/map/MapEmbed";
+import MapPageClient from "@/components/map/MapPageClient";
+import { mapPlaces } from "@/lib/map-places";
 
 export default function MapPage() {
-  return (
-    <main className="h-[calc(100vh-3.5rem)] w-full">
-      <MapEmbed />
-    </main>
-  );
+  return <MapPageClient places={mapPlaces} />;
 }

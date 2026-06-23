@@ -175,16 +175,25 @@
 
 ---
 
-## Phase 9 — Map Page ✅ COMPLETE
+## Phase 9 — Map Page (refactored per map_page_option_b_spec.md)
 
-- [x] **9.1** — Google My Maps iframe
-  - `src` from `NEXT_PUBLIC_MAPS_EMBED_URL` environment variable
-  - Full viewport height minus navbar (`h-[calc(100vh-3.5rem)]`)
-  - `loading="lazy"`
-  - Component: `components/map/MapEmbed.tsx` · page: `app/map/page.tsx`
-  - Hebrew fallback when embed URL is missing
+> **Spec:** Interactive trip places explorer — Leaflet + OpenStreetMap (free, no API key).
+> Google My Maps iframe demoted to secondary accordion "מפת Google מלאה".
 
-**Checkpoint:** Map renders correctly, pan/zoom works on mobile ✅
+- [x] **9.0** — Previous iframe-only approach replaced (was marked complete, now superseded)
+- [ ] **9.1** — `types/map.ts` — `MapPlace` type
+- [ ] **9.2** — `lib/map-places.ts` — all 43 places as structured data
+- [ ] **9.3** — Install `leaflet` + `react-leaflet`
+- [ ] **9.4** — `InteractiveTripMap.tsx` — Leaflet map, category markers, popups, selectedPlace sync
+- [ ] **9.5** — `MapPlaceCard.tsx` — card with הצג במפה + פתח ב-Google Maps
+- [ ] **9.6** — `MapFilters.tsx` — horizontal category + city filters
+- [ ] **9.7** — `MapSearch.tsx` — search input filtering list + markers
+- [ ] **9.8** — `MapPageClient.tsx` — client orchestrator
+- [ ] **9.9** — `MapGoogleEmbed.tsx` — iframe in secondary accordion
+- [ ] **9.10** — `app/map/page.tsx` — server page
+- [ ] **9.11** — Mobile polish
+
+**Checkpoint:** Search + filters + grouped list + markers + Google Maps links working on mobile ✅
 
 ---
 
