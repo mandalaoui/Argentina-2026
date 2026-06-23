@@ -181,19 +181,19 @@
 > Google My Maps iframe demoted to secondary accordion "מפת Google מלאה".
 
 - [x] **9.0** — Previous iframe-only approach replaced (was marked complete, now superseded)
-- [ ] **9.1** — `types/map.ts` — `MapPlace` type
-- [ ] **9.2** — `lib/map-places.ts` — all 43 places as structured data
-- [ ] **9.3** — Install `leaflet` + `react-leaflet`
-- [ ] **9.4** — `InteractiveTripMap.tsx` — Leaflet map, category markers, popups, selectedPlace sync
-- [ ] **9.5** — `MapPlaceCard.tsx` — card with הצג במפה + פתח ב-Google Maps
-- [ ] **9.6** — `MapFilters.tsx` — horizontal category + city filters
-- [ ] **9.7** — `MapSearch.tsx` — search input filtering list + markers
-- [ ] **9.8** — `MapPageClient.tsx` — client orchestrator
-- [ ] **9.9** — `MapGoogleEmbed.tsx` — iframe in secondary accordion
-- [ ] **9.10** — `app/map/page.tsx` — server page
-- [ ] **9.11** — Mobile polish
+- [x] **9.1** — `types/map.ts` — `MapPlace` type with full schema
+- [x] **9.2** — `lib/map-places.ts` — 43 structured places (BA, Bariloche, Rosario, Colonia, Tigre)
+- [x] **9.3** — Installed `leaflet` + `@types/leaflet`
+- [x] **9.4** — `InteractiveTripMap.tsx` — Leaflet/OSM, emoji category markers, popups, selectedPlace sync, dynamic import (client-only)
+- [x] **9.5** — `MapPlaceCard.tsx` — card with הצג במפה + פתח ב-Google Maps, selected highlight
+- [x] **9.6** — `MapFilters.tsx` — horizontal scrollable category + city filters
+- [x] **9.7** — Search built into `MapPageClient.tsx` (matches name, area, category, tags, description)
+- [x] **9.8** — `MapPageClient.tsx` — client orchestrator, grouped list, 2-col desktop layout
+- [x] **9.9** — `MapGoogleEmbed.tsx` — iframe moved to secondary collapsible accordion "מפת Google מלאה"
+- [x] **9.10** — `app/map/page.tsx` — server page passing places to client
+- [ ] **9.11** — Mobile polish (to verify on real device)
 
-**Checkpoint:** Search + filters + grouped list + markers + Google Maps links working on mobile ✅
+**Checkpoint:** Map loads with 38 places, search + filters + markers + Google Maps links verified in preview ✅
 
 ---
 
