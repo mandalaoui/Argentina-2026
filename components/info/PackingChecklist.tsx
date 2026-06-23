@@ -57,7 +57,7 @@ export default function PackingChecklist({ checks, onToggle }: PackingChecklistP
             <button
               onClick={() => onToggle(item.id)}
               aria-label={done ? `בטל סימון ${item.label}` : `סמן ${item.label} כארוז`}
-              className="mt-0.5 shrink-0 text-argentina hover:opacity-70 transition-opacity min-h-11 min-w-11 flex items-center justify-center -m-2"
+              className="mt-0.5 shrink-0 self-start text-argentina hover:opacity-70 transition-opacity"
             >
               {done
                 ? <CheckCircle2 size={22} className="text-argentina" />
