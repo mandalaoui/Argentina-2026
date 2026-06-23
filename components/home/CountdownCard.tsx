@@ -11,11 +11,11 @@ export default function CountdownCard() {
 
   return (
     <Card className="bg-argentina text-white border-0">
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center justify-center gap-2 mb-3">
         <Plane size={20} aria-hidden="true" />
         <span className="font-semibold text-sm opacity-90">הטיסה מתקרבת</span>
       </div>
-      <div className="flex items-end gap-3">
+      <div className="flex items-end justify-center gap-3">
         <div className="text-center">
           <p className="text-5xl font-bold leading-none">{days}</p>
           <p className="text-xs opacity-80 mt-1">ימים</p>
@@ -26,7 +26,7 @@ export default function CountdownCard() {
           <p className="text-xs opacity-80 mt-1">שעות</p>
         </div>
       </div>
-      <p className="text-xs opacity-70 mt-3">יציאה 30.06.2026 · 16:05 מתל אביב</p>
+      <p className="text-xs opacity-70 mt-3 text-center">יציאה 30.06.2026 · 16:05 מתל אביב</p>
     </Card>
   );
 }
