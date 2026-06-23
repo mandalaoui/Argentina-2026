@@ -312,7 +312,7 @@
 | 7 — Info Page | ✅ Complete | Packing checklist + emergency cards · pending: insurance #, SIM provider |
 | 8 — Spanish | ✅ Complete | 7 tabs, search, copy, MyMemory translation |
 | 9 — Map | ✅ Complete | Google My Maps iframe, full viewport |
-| 10 — World Cup | 🔲 | Match data = placeholders |
+| 10 — World Cup | ✅ Complete | Live API, nested stage accordions |
 | 11 — Photos | 🔲 | Supabase setup needed |
 | 12 — PWA | 🔲 | |
 | 13 — QA | 🔲 | |
