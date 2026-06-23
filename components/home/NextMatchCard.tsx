@@ -1,14 +1,50 @@
 import Card from "@/components/ui/Card";
 import { getNextArgentinaMatch } from "@/data/worldcup";
+import { fetchWorldCupMatches, getNextArgentinaMatchFromApi, formatMatchTime, matchStatusHe } from "@/lib/worldcup-api";
 import { Trophy } from "lucide-react";
 import Link from "next/link";
 
-export default function NextMatchCard() {
-  const match = getNextArgentinaMatch();
+export default async function NextMatchCard() {
+  // Try live API first, fall back to static data
+  const apiMatches = await fetchWorldCupMatches();
+  const apiMatch = getNextArgentinaMatchFromApi(apiMatches);
+  const staticMatch = getNextArgentinaMatch();
 
-  if (!match) return null;
+  // Use API data if available
+  if (apiMatch) {
+    const { date, time } = formatMatchTime(apiMatch.date);
+    const liveStatus = matchStatusHe(apiMatch.status);
 
-  const matchDate = new Date(`${match.date}T${match.time}:00-03:00`);
+    return (
+      <Link href="/worldcup">
+        <Card className="border-sun bg-sun/10 cursor-pointer hover:bg-sun/20 transition-colors">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <Trophy size={16} className="text-navy" aria-hidden="true" />
+              <span className="text-sm font-semibold text-navy">המשחק הבא של ארגנטינה</span>
+            </div>
+            {liveStatus && (
+              <span className="text-xs font-bold text-red-600 animate-pulse">{liveStatus}</span>
+            )}
+          </div>
+          <p className="text-lg font-bold text-navy mb-1">
+            {apiMatch.homeTeam} 🆚 {apiMatch.awayTeam}
+          </p>
+          {apiMatch.homeScore !== null && (
+            <p className="text-2xl font-bold text-argentina mb-1">
+              {apiMatch.homeScore} – {apiMatch.awayScore}
+            </p>
+          )}
+          <p className="text-sm text-gray-500">{date} · {time} (שעון ארגנטינה)</p>
+        </Card>
+      </Link>
+    );
+  }
+
+  // Fallback: static data from worldcup.ts
+  if (!staticMatch) return null;
+
+  const matchDate = new Date(`${staticMatch.date}T${staticMatch.time}:00-03:00`);
   const dateStr = matchDate.toLocaleDateString("he-IL", {
     weekday: "long", day: "numeric", month: "long",
   });
@@ -24,13 +60,10 @@ export default function NextMatchCard() {
           <span className="text-sm font-semibold text-navy">המשחק הבא של ארגנטינה</span>
         </div>
         <p className="text-lg font-bold text-navy mb-1">
-          {match.teamA} 🆚 {match.teamB}
+          {staticMatch.teamA} 🆚 {staticMatch.teamB}
         </p>
-        <p className="text-sm text-gray-600">{match.stageLabel}</p>
+        <p className="text-sm text-gray-600">{staticMatch.stageLabel}</p>
         <p className="text-sm text-gray-500 mt-1">{dateStr} · {timeStr} (שעון ארגנטינה)</p>
-        {match.city !== "TODO" && (
-          <p className="text-xs text-gray-400 mt-0.5">{match.stadium}, {match.city}</p>
-        )}
       </Card>
     </Link>
   );
