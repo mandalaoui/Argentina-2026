@@ -414,9 +414,10 @@ export const destinations: Destination[] = [
       checkOut: "2026-07-12T12:00:00",
       phone: "+54 (1) 145566700",
     },
-    activities: [],
-    restaurants: [],
-    bars: [],
+    // Same activities, restaurants and bars as the first Buenos Aires stay
+    get activities() { return destinations[0].activities; },
+    get restaurants() { return destinations[0].restaurants; },
+    get bars()        { return destinations[0].bars; },
     tips: [
       "קניות אחרונות — מזכרות, שוקולד, מתנות",
       "ארוחות שנשארו ברשימה",
