@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
 import Flag from "@/components/ui/Flag";
+import { useNavActive } from "./useNavActive";
 
 const navItems = [
   { href: "/",          label: "בית" },
@@ -19,7 +19,6 @@ const navItems = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   return (
     <>
@@ -43,22 +42,9 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {navItems.map(({ href, label }) => {
-              const isActive = pathname === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-white text-argentina"
-                      : "text-white hover:bg-white/20"
-                  }`}
-                >
-                  {label}
-                </Link>
-              );
-            })}
+            {navItems.map(({ href, label }) => (
+              <NavLink key={href} href={href} label={label} />
+            ))}
           </nav>
 
           {/* Spacer for mobile (balance the hamburger on left) */}
@@ -68,5 +54,22 @@ export default function Navbar() {
 
       <HamburgerMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </>
+  );
+}
+
+function NavLink({ href, label }: { href: string; label: string }) {
+  const isActive = useNavActive(href);
+
+  return (
+    <Link
+      href={href}
+      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+        isActive
+          ? "bg-white text-argentina"
+          : "text-white hover:bg-white/20"
+      }`}
+    >
+      {label}
+    </Link>
   );
 }

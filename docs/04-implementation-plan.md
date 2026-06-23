@@ -161,25 +161,28 @@
 
 ---
 
-## Phase 8 — Spanish Page
+## Phase 8 — Spanish Page ✅ COMPLETE
 
-- [ ] **8.1** — Tabs for each category: שיחות / מסעדות / מלון / תחבורה / כסף / חירום / כדורגל
-- [ ] **8.2** — `PhraseCard`: Hebrew label / Spanish phrase / transliteration / copy button
-- [ ] **8.3** — In-page search / filter (real-time, filters phrase cards)
-- [ ] **8.4** — Free translation input at bottom of page (MyMemory API)
+- [x] **8.1** — Tabs for each category: שיחות / מסעדות / מלון / תחבורה / כסף / חירום / כדורגל
+- [x] **8.2** — `PhraseCard`: Hebrew label / Spanish phrase / transliteration / copy button
+- [x] **8.3** — In-page search / filter (real-time, filters phrase cards)
+- [x] **8.4** — Free translation input at bottom of page (MyMemory API)
   - Textarea + direction toggle
   - "תרגם" button + result display
+  - API route: `app/api/translate/route.ts` · helper: `lib/translate.ts`
 
 **Checkpoint:** Copy button works, translation API returns result, search filters correctly ✅
 
 ---
 
-## Phase 9 — Map Page
+## Phase 9 — Map Page ✅ COMPLETE
 
-- [ ] **9.1** — Google My Maps iframe
+- [x] **9.1** — Google My Maps iframe
   - `src` from `NEXT_PUBLIC_MAPS_EMBED_URL` environment variable
-  - Full viewport height minus navbar
+  - Full viewport height minus navbar (`h-[calc(100vh-3.5rem)]`)
   - `loading="lazy"`
+  - Component: `components/map/MapEmbed.tsx` · page: `app/map/page.tsx`
+  - Hebrew fallback when embed URL is missing
 
 **Checkpoint:** Map renders correctly, pan/zoom works on mobile ✅
 
@@ -298,8 +301,8 @@
 | 5 — Trip Page | ✅ Complete | Drawer, checklist, localStorage |
 | 6 — Documents | ✅ Complete | 4/5 docs live · pending: BRC→EZE, insurance, passports |
 | 7 — Info Page | ✅ Complete | Packing checklist + emergency cards · pending: insurance #, SIM provider |
-| 8 — Spanish | 🔲 | |
-| 9 — Map | 🔲 | env var ready |
+| 8 — Spanish | ✅ Complete | 7 tabs, search, copy, MyMemory translation |
+| 9 — Map | ✅ Complete | Google My Maps iframe, full viewport |
 | 10 — World Cup | 🔲 | Match data = placeholders |
 | 11 — Photos | 🔲 | Supabase setup needed |
 | 12 — PWA | 🔲 | |

@@ -25,6 +25,27 @@ export const categoryLabels: Record<PhraseCategory, string> = {
   football:   "כדורגל",
 };
 
+/** Short tab labels for the Spanish page */
+export const categoryTabLabels: Record<PhraseCategory, string> = {
+  basic:      "שיחות",
+  restaurant: "מסעדות",
+  hotel:      "מלון",
+  transport:  "תחבורה",
+  money:      "כסף",
+  emergency:  "חירום",
+  football:   "כדורגל",
+};
+
+export const phraseCategories: PhraseCategory[] = [
+  "basic",
+  "restaurant",
+  "hotel",
+  "transport",
+  "money",
+  "emergency",
+  "football",
+];
+
 export const phrases: Phrase[] = [
   // שיחות בסיסיות
   { id: "hello",        category: "basic", hebrew: "שלום",                       spanish: "Hola",                        transliteration: "אולה" },

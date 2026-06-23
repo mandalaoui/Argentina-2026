@@ -1,9 +1,9 @@
 "use client";
 
-import { X, Home, Map, MapPin, FileText, Info, MessageSquare, Trophy } from "lucide-react";
+import { X, Home, Map, MapPin, FileText, Info, MessageSquare, Trophy, type LucideIcon } from "lucide-react";
 import Flag from "@/components/ui/Flag";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useNavActive } from "./useNavActive";
 
 const navItems = [
   { href: "/",          label: "בית",           icon: Home },
@@ -21,8 +21,6 @@ interface HamburgerMenuProps {
 }
 
 export default function HamburgerMenu({ isOpen, onClose }: HamburgerMenuProps) {
-  const pathname = usePathname();
-
   return (
     <>
       {/* Overlay */}
@@ -59,26 +57,46 @@ export default function HamburgerMenu({ isOpen, onClose }: HamburgerMenuProps) {
 
         {/* Nav links */}
         <nav className="flex flex-col p-3 gap-1">
-          {navItems.map(({ href, label, icon: Icon }) => {
-            const isActive = pathname === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                onClick={onClose}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                  isActive
-                    ? "bg-argentina text-white"
-                    : "text-navy hover:bg-argentina-light"
-                }`}
-              >
-                <Icon size={20} aria-hidden="true" />
-                {label}
-              </Link>
-            );
-          })}
+          {navItems.map(({ href, label, icon: Icon }) => (
+            <DrawerNavLink
+              key={href}
+              href={href}
+              label={label}
+              icon={Icon}
+              onClose={onClose}
+            />
+          ))}
         </nav>
       </div>
     </>
+  );
+}
+
+function DrawerNavLink({
+  href,
+  label,
+  icon: Icon,
+  onClose,
+}: {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+  onClose: () => void;
+}) {
+  const isActive = useNavActive(href);
+
+  return (
+    <Link
+      href={href}
+      onClick={onClose}
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+        isActive
+          ? "bg-argentina text-white"
+          : "text-navy hover:bg-argentina-light"
+      }`}
+    >
+      <Icon size={20} aria-hidden="true" />
+      {label}
+    </Link>
   );
 }
