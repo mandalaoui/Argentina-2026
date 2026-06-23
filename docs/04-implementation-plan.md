@@ -37,8 +37,8 @@
 - [x] **0.5** — Configure Argentina color palette in `globals.css` (Tailwind v4 CSS-based config)
 - [x] **0.6** — Create `.env.local` with all variable keys — fully populated
 - [x] **0.7** — Create folder structure: `app/`, `components/`, `data/`, `lib/`, `docs/`
-- [x] **0.8** — `git init` + committed to local repo
-- [ ] **0.9** — Connect to Vercel + first deploy → **pending — do before trip**
+- [x] **0.8** — `git init` + push to GitHub ✅
+- [ ] **0.9** — Connect to Vercel → moved to Phase 13 (deploy at end of QA)
 
 > ⚠️ Note: Tailwind v4 uses CSS-based config (globals.css @theme), not tailwind.config.ts
 
@@ -86,22 +86,17 @@
 
 ---
 
-## Phase 4 — Home Page
+## Phase 4 — Home Page ✅ COMPLETE
 
-- [ ] **4.1** — Date-based state logic: pre-trip / during-trip (compare today vs. 01.07–12.07.2026)
-- [ ] **4.2** — Countdown card (pre-trip): days until departure
-- [ ] **4.3** — "Today in the trip" card (during trip): day number, current destination, tonight's hotel
-- [ ] **4.4** — Weather card — Open-Meteo API
-  - Temperature + icon
-  - Auto-selects city based on current trip date
-- [ ] **4.5** — Currency card — ExchangeRate-API
-  - ILS → ARS and USD → ARS
-  - Last updated timestamp
-- [ ] **4.6** — Next Argentina match card (from `data/worldcup.ts`)
-  - Teams, date, time in GMT-3
-- [ ] **4.7** — Quick action buttons: → Documents, → Map
+- [x] **4.1** — Date-based state logic: pre-trip / during-trip
+- [x] **4.2** — Countdown card (pre-trip): days + hours until departure
+- [x] **4.3** — "Today in the trip" card (during trip): day number, destination, hotel
+- [x] **4.4** — Weather card — Open-Meteo API, auto-city by date, 30min cache
+- [x] **4.5** — Currency card — ExchangeRate-API, ILS→ARS + USD→ARS, last updated
+- [x] **4.6** — Next Argentina match — live from football-data.org API (8640s cache, max 10 req/day)
+- [x] **4.7** — Quick action buttons: → Documents, → Map
 
-**Checkpoint:** All cards display correctly, APIs return data, date logic switches correctly ✅
+**Checkpoint:** All cards live, APIs verified in browser ✅
 
 ---
 
@@ -237,7 +232,7 @@
 - [ ] **13.7** — Error/fallback states when API fails or has no internet
 - [ ] **13.8** — `<meta name="viewport" content="width=device-width, initial-scale=1">` confirmed
 - [ ] **13.9** — `<meta name="theme-color" content="#74ACDF">` confirmed
-- [ ] **13.10** — Final deploy to Vercel + verify production URL
+- [ ] **13.10** — Connect repo to Vercel, add all env vars, deploy + verify production URL
 
 ---
 
@@ -294,7 +289,7 @@
 | 1 — Navbar | ✅ Complete | Mobile drawer + desktop topbar |
 | 2 — UI Components | ✅ Complete | 7 components verified |
 | 3 — Data Layer | ✅ Complete | 6 data files, 0 TS errors |
-| 4 — Home Page | 🔲 Next | |
+| 4 — Home Page | ✅ Complete | Live APIs: weather, currency, football |
 | 5 — Trip Page | ✅ Complete | Drawer, checklist, localStorage |
 | 6 — Documents | 🔲 | Supabase setup needed |
 | 7 — Info Page | 🔲 | |
