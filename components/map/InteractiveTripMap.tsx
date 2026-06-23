@@ -132,7 +132,12 @@ export default function InteractiveTripMap({ places, selectedPlace, onSelectPlac
     <div
       ref={containerRef}
       className="w-full rounded-2xl overflow-hidden border border-argentina-light"
-      style={{ height: "clamp(320px, 38vh, 480px)" }}
+      style={{
+        height: "clamp(280px, 36vh, 440px)",
+        isolation: "isolate",
+        zIndex: 0,
+        position: "relative",
+      }}
       aria-label="מפת מקומות הטיול"
     />
   );
