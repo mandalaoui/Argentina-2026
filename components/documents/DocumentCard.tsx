@@ -49,7 +49,7 @@ export default function DocumentCard({ document, isAvailable }: Props) {
     <div className="bg-soft-gray rounded-xl p-4 border border-argentina-light/50">
       <div className="flex items-start justify-between gap-2 mb-3">
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-navy text-sm leading-snug">{document.name}</h3>
+          <h3 className="font-semibold text-navy text-base leading-snug">{document.name}</h3>
           <p className="text-xs text-gray-400 mt-1">{document.date}</p>
         </div>
         {document.important && <Badge variant="important" />}

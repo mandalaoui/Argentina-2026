@@ -24,7 +24,7 @@ export default function JournalPageClient() {
   return (
     <main>
       <div className="px-4 pt-4 pb-2 flex items-center gap-2">
-        <h1 className="text-2xl font-bold text-navy">יומן מסע</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-navy">יומן מסע</h1>
         <Flag code="AR" size={26} />
       </div>
       <p className="px-4 text-xs text-gray-400 mb-4">

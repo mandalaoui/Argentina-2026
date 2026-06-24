@@ -36,7 +36,7 @@ export default function InfoPageClient() {
   return (
     <main className="p-4 max-w-lg mx-auto pb-24">
       <div className="pt-2 pb-4">
-        <h1 className="text-2xl font-bold text-navy flex items-center gap-2">
+        <h1 className="text-xl md:text-2xl font-bold text-navy flex items-center gap-2">
           מידע שימושי <Flag code="AR" size={28} />
         </h1>
         <p className="text-sm text-gray-400 mt-1">ציוד, אפליקציות, כסף ומספרי חירום</p>

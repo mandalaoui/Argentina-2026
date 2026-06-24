@@ -60,7 +60,7 @@ export default function MapPageClient({ places }: Props) {
 
       {/* ── Page title (not sticky) ─────────────────────── */}
       <div className="px-4 pt-4 pb-2 flex-shrink-0">
-        <h1 className="text-xl font-bold text-navy">מפת הטיול</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-navy">מפת הטיול</h1>
         <p className="text-xs text-gray-400 mt-0.5">
           מסעדות, ברים, אטרקציות, קניות ותחבורה
         </p>

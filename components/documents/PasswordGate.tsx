@@ -39,7 +39,7 @@ export default function PasswordGate({ onUnlock }: Props) {
           </div>
         </div>
 
-        <h1 className="text-xl font-bold text-navy flex items-center justify-center gap-2">
+        <h1 className="text-xl md:text-2xl font-bold text-navy flex items-center justify-center gap-2">
           מסמכים <Flag code="AR" size={22} />
         </h1>
         <p className="text-sm text-gray-500 mt-2 mb-6">

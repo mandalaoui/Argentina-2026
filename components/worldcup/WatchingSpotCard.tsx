@@ -7,7 +7,7 @@ export default function WatchingSpotCard({ spot }: { spot: WatchingSpot }) {
     <Card>
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-navy text-sm">{spot.name}</p>
+          <p className="font-semibold text-navy text-base">{spot.name}</p>
           <p className="text-xs text-gray-500 mt-0.5">{spot.area} · {spot.city}</p>
           <p className="text-xs text-gray-600 mt-1 leading-relaxed">{spot.notes}</p>
         </div>

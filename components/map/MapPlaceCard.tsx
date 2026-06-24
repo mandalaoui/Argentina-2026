@@ -27,7 +27,7 @@ export default function MapPlaceCard({ place, selected, onSelect }: Props) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 mb-0.5">
             <span className="text-base leading-none" aria-hidden="true">{config.icon}</span>
-            <h3 className="font-semibold text-navy text-sm leading-tight truncate">{place.nameHe}</h3>
+            <h3 className="font-semibold text-navy text-base leading-tight truncate">{place.nameHe}</h3>
           </div>
           <p className="text-xs text-gray-400 truncate">{place.nameEn}</p>
         </div>

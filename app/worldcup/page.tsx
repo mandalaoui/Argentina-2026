@@ -39,7 +39,7 @@ export default async function WorldCupPage() {
 
       {/* Header */}
       <div className="pt-2 pb-4 flex items-center gap-2">
-        <h1 className="text-2xl font-bold text-navy">מונדיאל 2026</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-navy">מונדיאל 2026</h1>
         <Flag code="AR" size={28} />
       </div>
 

@@ -61,7 +61,7 @@ export default function InteractiveTripMap({ places, selectedPlace, onSelectPlac
             border-radius: 50%;
             width: 28px; height: 28px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 14px;
+            font-size: 0.9375rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
           ">${config.icon}</div>`,
           className: "",
@@ -75,13 +75,13 @@ export default function InteractiveTripMap({ places, selectedPlace, onSelectPlac
           .addTo(map)
           .bindPopup(`
             <div dir="rtl" style="font-family: Heebo, sans-serif; min-width: 180px;">
-              <p style="font-weight: 700; font-size: 14px; margin: 0 0 2px;">${place.nameHe}</p>
-              <p style="color: #6B7280; font-size: 11px; margin: 0 0 4px;">${place.nameEn}</p>
-              <p style="font-size: 11px; color: #2C5282; margin: 0 0 6px;">${config.label} · ${place.areaHe}</p>
-              <p style="font-size: 11px; margin: 0 0 8px;">${place.descriptionHe}</p>
+              <p style="font-weight: 700; font-size: 0.9375rem; margin: 0 0 2px;">${place.nameHe}</p>
+              <p style="color: #6B7280; font-size: 0.8125rem; margin: 0 0 4px;">${place.nameEn}</p>
+              <p style="font-size: 0.8125rem; color: #2C5282; margin: 0 0 6px;">${config.label} · ${place.areaHe}</p>
+              <p style="font-size: 0.8125rem; margin: 0 0 8px;">${place.descriptionHe}</p>
               <a href="${mapsUrl}" target="_blank"
                 style="display: inline-block; background: #74ACDF; color: white; padding: 4px 10px;
-                border-radius: 8px; font-size: 11px; text-decoration: none;">
+                border-radius: 8px; font-size: 0.8125rem; text-decoration: none;">
                 פתח ב-Google Maps
               </a>
             </div>

@@ -57,7 +57,7 @@ export function ActivityChecklist({
   if (activities.length === 0)
     return <p className="text-sm text-gray-400">{emptyMessage}</p>;
 
-  const iconSize = compact ? 18 : 22;
+  const iconSize = compact ? 20 : 22;
 
   return (
     <ul className={compact ? "space-y-1.5" : "space-y-2"}>
@@ -92,7 +92,7 @@ export function ActivityChecklist({
                 </p>
               )}
               {act.notes && !done && (
-                <p className={`${compact ? "text-[11px]" : "text-xs"} text-gray-400 mt-0.5`}>{act.notes}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{act.notes}</p>
               )}
               {!compact && done && doneAt && (
                 <p className="text-xs text-gray-400 mt-0.5">

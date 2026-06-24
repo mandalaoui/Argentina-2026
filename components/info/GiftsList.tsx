@@ -157,8 +157,8 @@ function GiftsTable() {
                   className="text-argentina hover:opacity-70 transition-opacity"
                 >
                   {row.done
-                    ? <CheckCircle2 size={18} className="text-argentina" />
-                    : <Circle size={18} className="text-gray-300" />}
+                    ? <CheckCircle2 size={20} className="text-argentina" />
+                    : <Circle size={20} className="text-gray-300" />}
                 </button>
 
                 {/* Name */}
