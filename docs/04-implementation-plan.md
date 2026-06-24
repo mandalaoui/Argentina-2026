@@ -207,7 +207,7 @@
 - [x] **13.2** — Deploy to Vercel with all env vars
 - [x] **13.3** — Production URL: **argentina-2026-mandalaoui.vercel.app** ✅
 - [ ] **13.4** — Change documents password from `12345678` → strong password in Vercel env vars
-- [ ] **13.5** — Supabase: `ALTER TABLE app_data DISABLE ROW LEVEL SECURITY;` — **run this!**
+- [x] **13.5** — Supabase: `ALTER TABLE app_data DISABLE ROW LEVEL SECURITY;` — done ✅
 
 ---
 
