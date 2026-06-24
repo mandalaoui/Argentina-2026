@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeftRight, Loader2 } from "lucide-react";
+import { ArrowLeftRight, Loader2, Volume2 } from "lucide-react";
 import Card from "@/components/ui/Card";
+import { speakSpanish } from "@/lib/speak-spanish";
 import type { TranslateLang } from "@/lib/translate";
 
 type Direction = "he-to-es" | "es-to-he";
@@ -110,12 +111,24 @@ export default function TranslationWidget() {
       {result && (
         <div className="mt-3 rounded-xl bg-argentina-light border border-argentina/20 p-3">
           <p className="text-xs text-gray-500 mb-1">תוצאה:</p>
-          <p
-            className="text-base font-medium text-navy"
-            dir={direction === "he-to-es" ? "ltr" : "rtl"}
-          >
-            {result}
-          </p>
+          <div className="flex items-center gap-3">
+            <p
+              className="text-base font-medium text-navy"
+              dir={direction === "he-to-es" ? "ltr" : "rtl"}
+            >
+              {result}
+            </p>
+            {direction === "he-to-es" && (
+              <button
+                type="button"
+                onClick={() => speakSpanish(result)}
+                className="flex shrink-0 items-center justify-center w-11 h-11 rounded-full bg-white text-argentina hover:bg-argentina/10 active:scale-95 transition-all"
+                aria-label={`השמע את התרגום ${result}`}
+              >
+                <Volume2 size={20} aria-hidden="true" />
+              </button>
+            )}
+          </div>
         </div>
       )}
     </Card>

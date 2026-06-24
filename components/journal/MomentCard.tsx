@@ -48,10 +48,10 @@ export default function MomentCard({ moment, onDelete }: Props) {
           {/* Location + time row */}
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5 text-xs text-gray-500">
-              <MapPin size={12} className="text-argentina flex-shrink-0" />
+              <MapPin size={12} className="text-argentina shrink-0" />
               <span className="truncate max-w-[200px]">{moment.location}</span>
             </div>
-            <span className="text-xs text-gray-400 flex-shrink-0">{timeStr}</span>
+            <span className="text-xs text-gray-400 shrink-0">{timeStr}</span>
           </div>
 
           {/* Caption */}
@@ -93,7 +93,7 @@ export default function MomentCard({ moment, onDelete }: Props) {
       {/* Lightbox */}
       {lightbox && moment.photoUrl && (
         <div
-          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-60 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setLightbox(false)}
         >
           <button

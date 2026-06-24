@@ -24,7 +24,7 @@ export default function PhraseCard({ phrase }: PhraseCardProps) {
       <button
         type="button"
         onClick={playAudio}
-        className="shrink-0 items-center justify-center w-11 h-11 rounded-full bg-argentina-light text-argentina hover:bg-argentina/20 active:scale-95 transition-all"
+        className="flex shrink-0 items-center justify-center w-11 h-11 rounded-full bg-argentina-light text-argentina hover:bg-argentina/20 active:scale-95 transition-all"
         aria-label={`השמע את הביטוי ${phrase.spanish}`}
       >
         <Volume2 size={20} aria-hidden="true" />

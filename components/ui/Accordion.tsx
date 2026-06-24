@@ -26,7 +26,7 @@ export function AccordionItem({ title, icon, children, defaultOpen = false, nest
           <span className="text-sm font-semibold text-navy">{title}</span>
           <ChevronDown
             size={15}
-            className={cn("text-argentina transition-transform duration-200 flex-shrink-0", isOpen && "rotate-180")}
+            className={cn("text-argentina transition-transform duration-200 shrink-0", isOpen && "rotate-180")}
           />
         </button>
         {isOpen && (
@@ -51,7 +51,7 @@ export function AccordionItem({ title, icon, children, defaultOpen = false, nest
         </div>
         <ChevronDown
           size={18}
-          className={cn("text-argentina transition-transform duration-200 flex-shrink-0", isOpen && "rotate-180")}
+          className={cn("text-argentina transition-transform duration-200 shrink-0", isOpen && "rotate-180")}
         />
       </button>
 

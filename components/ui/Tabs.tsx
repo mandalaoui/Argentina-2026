@@ -28,7 +28,7 @@ export default function Tabs({ tabs, children, defaultTab, className }: TabsProp
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0",
+              "flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors shrink-0",
               activeTab === tab.id
                 ? "bg-argentina text-white"
                 : "text-gray-500 hover:bg-argentina-light hover:text-navy"

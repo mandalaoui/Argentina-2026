@@ -62,7 +62,7 @@ export default function DestinationCard({ destination: dest }: Props) {
             )}
           </div>
 
-          <div className="flex flex-col items-end gap-2 flex-shrink-0">
+          <div className="flex flex-col items-end gap-2 shrink-0">
             <Badge variant={status} />
             <ChevronLeft size={18} className="text-gray-300 rotate-180" aria-hidden="true" />
           </div>

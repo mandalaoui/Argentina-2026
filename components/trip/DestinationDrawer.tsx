@@ -51,12 +51,12 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
           }`}
       >
         {/* Handle */}
-        <div className="md:hidden flex justify-center pt-3 pb-1 flex-shrink-0">
+        <div className="md:hidden flex justify-center pt-3 pb-1 shrink-0">
           <div className="w-10 h-1 rounded-full bg-gray-300" />
         </div>
 
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-argentina-light flex-shrink-0">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-argentina-light shrink-0">
           <div>
             <h2 className="text-lg font-bold text-navy flex items-center gap-2">
               {!isSubTrip && <Flag code={dest.flag} size={20} />}
@@ -76,12 +76,12 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
         </div>
 
         {/* Tabs */}
-        <div className="flex overflow-x-auto gap-1 px-3 pt-2 pb-1 border-b border-argentina-light flex-shrink-0 scrollbar-none">
+        <div className="flex overflow-x-auto gap-1 px-3 pt-2 pb-1 border-b border-argentina-light shrink-0 scrollbar-none">
           {TABS.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-colors flex-shrink-0
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-colors shrink-0
                 ${activeTab === id ? "bg-argentina text-white" : "text-gray-500 hover:bg-argentina-light"}`}
             >
               <Icon size={13} aria-hidden="true" />
@@ -98,7 +98,7 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
             <div className="space-y-3">
               <p className="font-semibold text-navy">{dest.accommodation.name}</p>
               <div className="flex items-start gap-2 text-sm text-gray-600">
-                <MapPin size={14} className="text-argentina mt-0.5 flex-shrink-0" />
+                <MapPin size={14} className="text-argentina mt-0.5 shrink-0" />
                 <span>{dest.accommodation.address}</span>
               </div>
               {dest.accommodation.phone && (
@@ -171,7 +171,7 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
               ) : (
                 (isSubTrip ? sub.tips : dest.tips).map((tip, i) => (
                   <li key={i} className="flex gap-2 text-sm text-gray-700">
-                    <span className="text-argentina flex-shrink-0 mt-0.5">💡</span>
+                    <span className="text-argentina shrink-0 mt-0.5">💡</span>
                     <span>{tip}</span>
                   </li>
                 ))

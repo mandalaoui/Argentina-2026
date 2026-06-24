@@ -32,7 +32,7 @@ export default function MatchRow({ match, highlight = false }: Props) {
           {match.homeTeam}
         </span>
 
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           {isFinished && match.homeScore !== null ? (
             <span className="text-base font-bold text-argentina">
               {match.homeScore} – {match.awayScore}

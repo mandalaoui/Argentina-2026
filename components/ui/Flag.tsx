@@ -18,7 +18,7 @@ export default function Flag({ code, size = 20, className = "" }: FlagProps) {
       width={size}
       height={height}
       alt={COUNTRY_NAMES[code] ?? code}
-      className={`inline-block rounded-sm flex-shrink-0 ${className}`}
+      className={`inline-block rounded-sm shrink-0 ${className}`}
     />
   );
 }

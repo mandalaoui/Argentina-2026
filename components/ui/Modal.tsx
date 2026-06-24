@@ -48,7 +48,7 @@ export default function Modal({ isOpen, onClose, title, children, className }: M
       >
         {/* Header */}
         {title && (
-          <div className="flex items-center justify-between px-4 py-3 border-b border-argentina-light flex-shrink-0">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-argentina-light shrink-0">
             <h2 className="text-lg font-bold text-navy">{title}</h2>
             <button
               onClick={onClose}

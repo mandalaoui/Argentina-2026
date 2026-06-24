@@ -87,8 +87,8 @@ export default function AudioPlayer({ src, title }: Props) {
             <SkipBack size={16} />
           </button>
           <button onClick={togglePlay} aria-label={playing ? "השהה" : "נגן"}
-            className="w-9 h-9 rounded-full bg-argentina text-white flex items-center justify-center hover:opacity-90 transition-opacity flex-shrink-0">
-            {playing ? <Pause size={16} /> : <Play size={16} className="ml-[1px]" />}
+            className="w-9 h-9 rounded-full bg-argentina text-white flex items-center justify-center hover:opacity-90 transition-opacity shrink-0">
+            {playing ? <Pause size={16} /> : <Play size={16} className="ml-px" />}
           </button>
           <button onClick={() => skip(10)} aria-label="10 שניות קדימה"
             className="p-1 text-navy hover:text-argentina transition-colors">

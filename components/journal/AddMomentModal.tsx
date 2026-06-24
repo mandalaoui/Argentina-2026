@@ -174,12 +174,12 @@ export default function AddMomentModal({ isOpen, onClose, onSaved }: Props) {
             {locationState === "done" && (
               <div className="flex items-start gap-2">
                 <div className="flex-1 flex items-center gap-1.5 bg-argentina-light rounded-xl px-3 py-2 text-sm text-navy">
-                  <Navigation size={13} className="text-argentina flex-shrink-0" />
+                  <Navigation size={13} className="text-argentina shrink-0" />
                   <span className="flex-1">{location}</span>
                 </div>
                 <button
                   onClick={() => setLocationState("manual")}
-                  className="text-xs text-argentina hover:underline pt-2 flex-shrink-0"
+                  className="text-xs text-argentina hover:underline pt-2 shrink-0"
                 >
                   ערוך
                 </button>

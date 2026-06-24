@@ -21,13 +21,13 @@ export default function SongCard({ song }: { song: Song }) {
       {/* Header */}
       <div className="flex items-start justify-between gap-2 mb-1">
         <div className="flex items-center gap-2">
-          <Music size={16} className="text-argentina flex-shrink-0" aria-hidden="true" />
+          <Music size={16} className="text-argentina shrink-0" aria-hidden="true" />
           <h3 className="font-bold text-navy text-base">{song.title}</h3>
         </div>
         <button
           onClick={() => setOpen(!open)}
           aria-label={open ? "הסתר מילים" : "הצג מילים"}
-          className="p-1 text-gray-400 hover:text-argentina transition-colors flex-shrink-0"
+          className="p-1 text-gray-400 hover:text-argentina transition-colors shrink-0"
         >
           <ChevronDown size={16} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
         </button>

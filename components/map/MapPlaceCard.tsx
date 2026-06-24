@@ -32,7 +32,7 @@ export default function MapPlaceCard({ place, selected, onSelect }: Props) {
           <p className="text-xs text-gray-400 truncate">{place.nameEn}</p>
         </div>
         {place.rating && (
-          <div className="flex items-center gap-0.5 flex-shrink-0">
+          <div className="flex items-center gap-0.5 shrink-0">
             <Star size={11} className="text-sun fill-sun" aria-hidden="true" />
             <span className="text-xs font-medium text-gray-500">{place.rating}</span>
           </div>

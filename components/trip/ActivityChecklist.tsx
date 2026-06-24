@@ -41,68 +41,58 @@ interface ActivityChecklistProps {
   activities: Activity[];
   storageKey: string;
   emptyMessage?: string;
+  /** @deprecated No longer affects layout — kept for call-site compatibility */
   compact?: boolean;
-  showLinks?: boolean;  // show map link on activity name even in compact mode
+  /** @deprecated No longer affects layout — kept for call-site compatibility */
+  showLinks?: boolean;
 }
 
 export function ActivityChecklist({
   activities,
   storageKey,
   emptyMessage = "אין פעילויות רשומות",
-  compact = false,
-  showLinks = false,
 }: ActivityChecklistProps) {
   const { checks, toggle } = useCheckStorage(storageKey);
 
   if (activities.length === 0)
     return <p className="text-sm text-gray-400">{emptyMessage}</p>;
 
-  const iconSize = compact ? 20 : 22;
+  const iconSize = 22;
 
   return (
-    <ul className={compact ? "space-y-1.5" : "space-y-2"}>
+    <ul className="space-y-2">
       {activities.map((act) => {
         const done = checks[act.id]?.completed ?? false;
         const doneAt = checks[act.id]?.completedAt;
         return (
-          <li key={act.id} className={`flex items-start ${compact ? "gap-2" : "gap-3"}`}>
+          <li key={act.id} className="flex items-start gap-3">
             <button
+              type="button"
               onClick={() => toggle(act.id)}
               aria-label={done ? `בטל סימון ${act.nameHe}` : `סמן ${act.nameHe} כבוצע`}
-              className="shrink-0 self-start text-argentina hover:opacity-70 transition-opacity"
-              style={{ paddingTop: compact ? "1px" : "2px" }}
+              className="shrink-0 self-start flex items-center justify-center text-argentina hover:opacity-70 transition-opacity"
+              style={{ paddingTop: "2px" }}
             >
               {done
-                ? <CheckCircle2 size={iconSize} className="text-argentina" />
-                : <Circle size={iconSize} className="text-gray-300" />}
+                ? <CheckCircle2 size={iconSize} className="text-argentina shrink-0" aria-hidden />
+                : <Circle size={iconSize} className="text-gray-300 shrink-0" aria-hidden />}
             </button>
-            <div className="flex-1 min-w-0">
-              {showLinks && act.mapsUrl && !done ? (
-                <a
-                  href={act.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${compact ? "text-xs" : "text-sm"} font-medium leading-snug text-navy hover:underline`}
-                >
-                  {act.nameHe}
-                </a>
-              ) : (
-                <p className={`${compact ? "text-xs" : "text-sm"} font-medium leading-snug ${done ? "line-through text-gray-400" : "text-navy"}`}>
-                  {act.nameHe}
-                </p>
-              )}
+            <div className="min-w-0 flex-1">
+              <p className={`text-sm font-medium leading-snug text-navy wrap-break-word whitespace-normal ${done ? "line-through text-gray-400" : ""}`}>
+                {act.nameHe}
+              </p>
               {act.notes && !done && (
-                <p className="text-xs text-gray-400 mt-0.5">{act.notes}</p>
+                <p className="text-xs text-gray-400 mt-0.5 wrap-break-word whitespace-normal">{act.notes}</p>
               )}
-              {!compact && done && doneAt && (
-                <p className="text-xs text-gray-400 mt-0.5">
+              {done && doneAt && (
+                <p className="text-xs text-gray-400 mt-0.5 wrap-break-word whitespace-normal">
                   בוצע: {new Date(doneAt).toLocaleDateString("he-IL", {
                     day: "numeric", month: "short", hour: "2-digit", minute: "2-digit",
                   })}
                 </p>
               )}
             </div>
-            {!compact && (
+            {act.mapsUrl && (
               <a
                 href={act.mapsUrl}
                 target="_blank"
@@ -110,7 +100,7 @@ export function ActivityChecklist({
                 aria-label={`פתח ${act.nameHe} במפה`}
                 className="shrink-0 p-1.5 rounded-lg text-argentina hover:bg-argentina-light transition-colors"
               >
-                <MapPin size={16} />
+                <MapPin size={16} aria-hidden="true" />
               </a>
             )}
           </li>

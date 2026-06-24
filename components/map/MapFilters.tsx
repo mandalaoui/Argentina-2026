@@ -31,7 +31,7 @@ export default function MapFilters({ activeCategory, activeCity, onCategoryChang
             <button
               key={cat}
               onClick={() => onCategoryChange(cat)}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-colors min-h-[32px] ${
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap shrink-0 transition-colors min-h-[32px] ${
                 isActive
                   ? "bg-argentina text-white"
                   : "bg-argentina-light text-navy hover:bg-argentina/20"
@@ -53,7 +53,7 @@ export default function MapFilters({ activeCategory, activeCity, onCategoryChang
             <button
               key={city}
               onClick={() => onCityChange(city)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-colors min-h-[32px] ${
+              className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap shrink-0 transition-colors min-h-[32px] ${
                 isActive
                   ? "bg-navy text-white"
                   : "bg-soft-gray text-gray-600 hover:bg-gray-200"
