@@ -31,7 +31,7 @@ export default function PasswordGate({ onUnlock }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-navy/80 backdrop-blur-sm px-4">
+    <div className="fixed inset-x-0 bottom-0 top-14 z-20 flex items-center justify-center bg-navy/80 backdrop-blur-sm px-4">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6 text-center">
         <div className="flex justify-center mb-4">
           <div className="w-14 h-14 rounded-full bg-argentina-light flex items-center justify-center">
