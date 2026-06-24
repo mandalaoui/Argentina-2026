@@ -230,7 +230,7 @@
 - [x] **15.4** — PackingChecklist → Supabase
 - [x] **15.5** — JournalFeed + AddMomentModal → Supabase
 - [x] **15.6** — GiftsList → Supabase
-- [ ] **15.7** — `ALTER TABLE app_data DISABLE ROW LEVEL SECURITY;` — **still needed!**
+- [x] **15.7** — `ALTER TABLE app_data DISABLE ROW LEVEL SECURITY;` — done ✅
 
 ---
 
@@ -262,7 +262,7 @@
 
 ### קריטי
 
-- [ ] `ALTER TABLE app_data DISABLE ROW LEVEL SECURITY;` — **חוסם שמירת כל הנתונים!**
+- [x] `ALTER TABLE app_data DISABLE ROW LEVEL SECURITY;` — בוצע ✅
 - [ ] שנה סיסמה מ-`12345678` בVercel env vars
 - [ ] לינה ברילוצ'ה — עדיין לא נבחרה → לעדכן ב-`data/trip.ts` + `data/trip-days.ts`
 - [ ] ביטוח נסיעות — חברה, פוליסה, טלפון → `data/emergency.ts`
