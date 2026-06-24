@@ -40,8 +40,6 @@
 - [x] **0.8** — `git init` + push to GitHub ✅
 - [ ] **0.9** — Connect to Vercel → moved to Phase 13 (deploy at end of QA)
 
-> ⚠️ Note: Tailwind v4 uses CSS-based config (globals.css @theme), not tailwind.config.ts
-
 **Checkpoint:** Build passes, app opens, RTL + Heebo + Argentina colors confirmed ✅
 
 ---
@@ -49,12 +47,12 @@
 ## Phase 1 — Layout & Navigation ✅ COMPLETE
 
 - [x] **1.1** — `components/layout/Navbar.tsx` — fixed topbar, Argentina blue, logo + flag
-- [x] **1.2** — `components/layout/HamburgerMenu.tsx` — RTL drawer, 7 pages with icons, overlay, ESC closes
-- [x] **1.3** — Route stubs for all 7 pages created
-- [x] **1.4** — Each page shows placeholder heading
+- [x] **1.2** — `components/layout/HamburgerMenu.tsx` — RTL drawer, 8 pages with icons, overlay
+- [x] **1.3** — Route stubs for all 8 pages created (+ journal added in Phase 14)
+- [x] **1.4** — Each page shows content
 - [x] **1.5** — Desktop: horizontal topbar links from `md:` breakpoint, active page highlighted
 
-**Checkpoint:** All 7 pages navigate, drawer opens/closes from right (RTL correct), verified on mobile preview ✅
+**Checkpoint:** All 8 pages navigate, drawer opens/closes from right (RTL correct) ✅
 
 ---
 
@@ -64,23 +62,26 @@
 - [x] **2.2** — `components/ui/Badge.tsx` — status tags: עבר / היום / בקרוב / חשוב
 - [x] **2.3** — `components/ui/Drawer.tsx` — bottom sheet mobile, centered modal desktop, ESC + scroll lock
 - [x] **2.4** — `components/ui/Modal.tsx` — centered overlay, ESC close, scroll lock
-- [x] **2.5** — `components/ui/Accordion.tsx` — collapsible with chevron animation
+- [x] **2.5** — `components/ui/Accordion.tsx` — collapsible with chevron + `nested` variant
 - [x] **2.6** — `components/ui/Tabs.tsx` — horizontal scrollable tabs, active highlight
-- [x] **2.7** — `components/ui/EmergencyCard.tsx` — red card with Call / Copy / Maps buttons (min 44px touch)
+- [x] **2.7** — `components/ui/EmergencyCard.tsx` — red card with Call / Copy / Maps buttons
+- [x] **2.8** — `components/ui/Flag.tsx` — flag image from flagcdn.com (replaces emoji)
 
-**Checkpoint:** All components rendered and verified in browser preview ✅
+**Checkpoint:** All components rendered and verified ✅
 
 ---
 
 ## Phase 3 — Data Layer ✅ COMPLETE
 
-- [x] **3.1** — `data/trip.ts` — 3 destinations + 2 sub-trips (Rosario, Colonia), accommodation, activities, restaurants, bars, tips, helper functions
-- [x] **3.2** — `data/emergency.ts` — 5 emergency contacts (police, ambulance, embassy, hospital, insurance)
-- [x] **3.3** — `data/info.ts` — 25 packing items, 6 apps, 6 money tips
-- [x] **3.4** — `data/phrases.ts` — 46 phrases across 7 categories with transliteration
-- [x] **3.5** — `data/worldcup.ts` — knockout schedule, Argentina matches, 3 watching spots
-  > ⚠️ Match data is placeholder — update with real schedule as tournament progresses
-- [x] **3.6** — `data/songs.ts` — 5 World Cup songs with Spanish lyrics + Hebrew translations + YouTube links
+- [x] **3.1** — `data/trip.ts` — 3 destinations + 2 sub-trips, accommodation, activities, restaurants, bars, tips, helper functions
+- [x] **3.2** — `data/emergency.ts` — 5 emergency contacts
+- [x] **3.3** — `data/info.ts` — 25 packing items, 6 apps, 6 money tips, 5 communication tips
+- [x] **3.4** — `data/phrases.ts` — 55 full-sentence phrases across 7 categories (upgraded from basic vocab)
+- [x] **3.5** — `data/worldcup.ts` — watching spots, static match fallback data
+- [x] **3.6** — `data/songs.ts` — 5 World Cup songs with Spanish lyrics + Hebrew translations
+- [x] **3.7** — `data/documents.ts` — document metadata with Supabase storage paths
+- [x] **3.8** — `types/map.ts` — MapPlace type + category config
+- [x] **3.9** — `types/journal.ts` — JournalMoment interface
 
 **Checkpoint:** TypeScript build passes with 0 errors ✅
 
@@ -89,12 +90,13 @@
 ## Phase 4 — Home Page ✅ COMPLETE
 
 - [x] **4.1** — Date-based state logic: pre-trip / during-trip
-- [x] **4.2** — Countdown card (pre-trip): days + hours until departure
-- [x] **4.3** — "Today in the trip" card (during trip): day number, destination, hotel
+- [x] **4.2** — Countdown card (pre-trip): days + hours until departure, centered layout
+- [x] **4.3** — TodayCard (during trip): day number, date, destination + flag, hotel, today's activities checklist
 - [x] **4.4** — Weather card — Open-Meteo API, auto-city by date, 30min cache
 - [x] **4.5** — Currency card — ExchangeRate-API, ILS→ARS + USD→ARS, last updated
 - [x] **4.6** — Next Argentina match — live from football-data.org API (8640s cache, max 10 req/day)
 - [x] **4.7** — Quick action buttons: → Documents, → Map
+- [x] **4.8** — Journal quick-add camera button (top-left shortcut)
 
 **Checkpoint:** All cards live, APIs verified in browser ✅
 
@@ -104,222 +106,116 @@
 
 - [x] **5.1** — Vertical destination list from `data/trip.ts`
 - [x] **5.2** — Destination card: name, dates, status badge, flag image, accommodation name
-- [x] **5.3** — `DestinationDrawer` — opens as bottom sheet on tap, hidden with `invisible` when closed
+- [x] **5.3** — `DestinationDrawer` — opens as bottom sheet on tap, `invisible` when closed
 - [x] **5.4** — Internal tabs: לינה / אוכל / פעילויות / ברים / טיפים / תמונות
-- [x] **5.5** — `ActivityChecklist` — checklist with completion state
-  - Checkbox toggles saved to `localStorage`
-  - Completion date/time auto-saved when checked
+- [x] **5.5** — `ActivityChecklist` with `compact` variant — localStorage persistence + timestamp
 - [x] **5.6** — "Open in Maps" button on every activity and restaurant
 - [x] **5.7** — Tips tab with destination-specific tips
-- [x] **5.8** — Sub-destinations (Rosario, Colonia) as tags on Buenos Aires card
+- [x] **5.8** — Sub-trip tags (Rosario, Colonia) — clickable, open own Drawer
 - [x] **5.9** — Buenos Aires (return) shares activities/restaurants/bars with first BA visit
-- [x] **fix** — Replaced flag emoji 🇦🇷 with `Flag` component (flagcdn.com w40) — works on all platforms
+- [x] **5.10** — Photos tab connected to `PhotoGallery` component (Phase 11)
 
-> ⚠️ Photos tab is placeholder — implemented in Phase 11
-
-**Checkpoint:** Destination list renders, drawer opens/closes correctly, checkboxes persist in localStorage ✅
+**Checkpoint:** Destination list renders, drawer opens/closes, checkboxes persist ✅
 
 ---
 
-## Phase 6 — Documents Page ✅ COMPLETE (pending uploads: insurance, passports, BRC→EZE flight)
+## Phase 6 — Documents Page ✅ COMPLETE (pending uploads: insurance, passports)
 
-- [x] **6.1** — `PasswordGate` component
-  - Full-screen lock until password entered
-  - Stores auth state in `sessionStorage`
-  - No document content visible before unlock
-- [x] **6.2** — Supabase project setup:
-  - Create `documents` bucket (Private) ✅
-  - Create `photos` bucket (Public) — SQL ready, verify in dashboard
-  - Configure CORS for the Vercel domain — add production domain before deploy
-  > Setup script: `scripts/setup-supabase-storage.sql`
+- [x] **6.1** — `PasswordGate` — sessionStorage auth, no content visible before unlock
+- [x] **6.2** — Supabase buckets created: `documents` (private) + `photos` (public)
 - [x] **6.3** — Accordion categories: טיסות / ביטוח / דרכונים / מלונות / נוספים
-- [x] **6.4** — `DocumentCard`: name, date, "חשוב" badge, view + download buttons
-- [x] **6.5** — Signed URL generation for private PDF viewing (1-hour expiry)
-- [x] **6.6** — "נעל מחדש" button in page footer
-- [x] **6.7** — Upload initial documents to Supabase (flight tickets first)
-  > 4 files uploaded: 3 flights + 1 hotel · pending: BRC→EZE, insurance, passports
-- [x] **6.8** — Connect `data/documents.ts` storage paths to actual Supabase files
-  - Live availability check via `listAvailableStoragePaths()` on page load
-  - Missing files show "הקובץ טרם הועלה" (no broken buttons)
+- [x] **6.4** — `DocumentCard` — name, date, "חשוב" badge, view + download
+- [x] **6.5** — Signed URL generation for private PDFs (1-hour expiry)
+- [x] **6.6** — "נעל מחדש" button
+- [x] **6.7** — Flight + hotel docs uploaded to Supabase
+- [x] **6.8** — Live availability check — missing files show clean fallback
 
-**Checkpoint:** Password gate ✅ · PDF view/download works for uploaded files ✅ · Missing files show clean fallback ✅
+> ⚠️ Pending uploads: insurance policy, passport scans
+
+**Checkpoint:** Password gate ✅ · PDF view/download works ✅ · Missing files show fallback ✅
 
 ---
 
-## Phase 7 — Useful Info Page ✅ COMPLETE (pending: insurance emergency number, SIM provider details)
+## Phase 7 — Useful Info Page ✅ COMPLETE
 
-- [x] **7.1** — Accordion sections: ציוד / אפליקציות / כסף / תקשורת / חירום
-- [x] **7.2** — Packing checklist with `localStorage` persistence
-- [x] **7.3** — Apps list with download links (App Store / Play Store deep links)
-- [x] **7.4** — `EmergencyCard` for each emergency contact:
-  - 📞 Call button (`tel:` link — activates phone dialer on mobile)
-  - 📋 Copy number button
-  - 📍 Maps button (where applicable)
-- [x] **7.5** — Emergency section: distinct red background (`bg-red-50 border-red-200`)
+- [x] **7.1** — Accordion: ציוד / אפליקציות / כסף / תקשורת / חירום
+- [x] **7.2** — Packing checklist with localStorage persistence + "ארוז" timestamp
+- [x] **7.3** — Apps list with App Store / Play Store links
+- [x] **7.4** — EmergencyCard: Call / Copy / Maps per contact
+- [x] **7.5** — Emergency section: red background, visually distinct
 
-**Checkpoint:** Packing checkboxes persist, call button works on mobile ✅
+> ⚠️ Pending: insurance emergency number, SIM provider details
+
+**Checkpoint:** Packing checkboxes persist, call button works ✅
 
 ---
 
 ## Phase 8 — Spanish Page ✅ COMPLETE
 
-- [x] **8.1** — Tabs for each category: שיחות / מסעדות / מלון / תחבורה / כסף / חירום / כדורגל
-- [x] **8.2** — `PhraseCard`: Hebrew label / Spanish phrase / transliteration / copy button
-- [x] **8.3** — In-page search / filter (real-time, filters phrase cards)
-- [x] **8.4** — Free translation input at bottom of page (MyMemory API)
-  - Textarea + direction toggle
-  - "תרגם" button + result display
-  - API route: `app/api/translate/route.ts` · helper: `lib/translate.ts`
+- [x] **8.1** — Tabs: שיחות / מסעדות / מלון / תחבורה / כסף / חירום / כדורגל
+- [x] **8.2** — PhraseCard: Hebrew / Spanish / transliteration / copy button
+- [x] **8.3** — In-page search (real-time filter)
+- [x] **8.4** — Free translation widget (MyMemory API, direction toggle)
+- [x] **8.5** — Upgraded phrasebook: 55 full practical sentences (not single words)
 
-**Checkpoint:** Copy button works, translation API returns result, search filters correctly ✅
+**Checkpoint:** Copy works, translation returns result, search filters correctly ✅
 
 ---
 
-## Phase 9 — Map Page (refactored per map_page_option_b_spec.md)
+## Phase 9 — Map Page ✅ COMPLETE
 
-> **Spec:** Interactive trip places explorer — Leaflet + OpenStreetMap (free, no API key).
-> Google My Maps iframe demoted to secondary accordion "מפת Google מלאה".
-
-- [x] **9.0** — Previous iframe-only approach replaced (was marked complete, now superseded)
-- [x] **9.1** — `types/map.ts` — `MapPlace` type with full schema
+- [x] **9.1** — `types/map.ts` — MapPlace type
 - [x] **9.2** — `lib/map-places.ts` — 43 structured places (BA, Bariloche, Rosario, Colonia, Tigre)
-- [x] **9.3** — Installed `leaflet` + `@types/leaflet`
-- [x] **9.4** — `InteractiveTripMap.tsx` — Leaflet/OSM, emoji category markers, popups, selectedPlace sync, dynamic import (client-only)
-- [x] **9.5** — `MapPlaceCard.tsx` — card with הצג במפה + פתח ב-Google Maps, selected highlight
-- [x] **9.6** — `MapFilters.tsx` — horizontal scrollable category + city filters
-- [x] **9.7** — Search built into `MapPageClient.tsx` (matches name, area, category, tags, description)
-- [x] **9.8** — `MapPageClient.tsx` — client orchestrator, grouped list, 2-col desktop layout
-- [x] **9.9** — `MapGoogleEmbed.tsx` — iframe moved to secondary collapsible accordion "מפת Google מלאה"
-- [x] **9.10** — `app/map/page.tsx` — server page passing places to client
-- [ ] **9.11** — Mobile polish (to verify on real device)
+- [x] **9.3** — Leaflet + @types/leaflet installed
+- [x] **9.4** — `InteractiveTripMap.tsx` — Leaflet/OSM, emoji markers, popups, selectedPlace sync
+- [x] **9.5** — `MapPlaceCard.tsx` — הצג במפה + Google Maps buttons
+- [x] **9.6** — `MapFilters.tsx` — sticky category + city filters above map
+- [x] **9.7** — Search in `MapPageClient.tsx`
+- [x] **9.8** — `MapPageClient.tsx` — grouped list, 2-col desktop, sticky filters
+- [x] **9.9** — `MapGoogleEmbed.tsx` → replaced with external link button to full Google Maps
+- [x] **9.10** — `app/map/page.tsx` — server page
+- [x] **9.11** — Mobile polish: Leaflet z-index isolated, filters sticky, no navbar overlap
 
-**Checkpoint:** Map loads with 38 places, search + filters + markers + Google Maps links verified in preview ✅
-
----
-
-## Phase 10 — World Cup Page
-
-- [ ] **10.1** — "Next Argentina match" card (from `data/worldcup.ts`)
-- [ ] **10.2** — Full schedule — Accordion by stage (שמינית / רבע / חצי / גמר)
-  - Argentina matches highlighted with badge
-- [ ] **10.3** — "Where to watch" section — cards for Buenos Aires and Bariloche
-- [ ] **10.4** — `SongCard` for each World Cup song:
-  - Song name + Hebrew description
-  - Spanish lyrics (in Spanish)
-  - Hebrew translation (small, below)
-  - YouTube link button + copy button
-
-**Checkpoint:** Schedule is accurate, song cards render correctly ✅
+**Checkpoint:** 43 places, search + filters + markers + Google Maps links verified ✅
 
 ---
 
-## Phase 11 — Photo Uploads
+## Phase 10 — World Cup Page ✅ COMPLETE
 
-- [ ] **11.1** — Upload button inside each destination drawer (תמונות tab)
-- [ ] **11.2** — `<input type="file" accept="image/*" capture="camera">` for mobile camera access
-- [ ] **11.3** — Upload to Supabase `photos/{destination-id}/` path
-- [ ] **11.4** — Photo gallery grid in תמונות tab
-- [ ] **11.5** — Tap photo → opens full-screen modal
-- [ ] **11.6** — Save upload date and destination name as Supabase metadata
+- [x] **10.1** — Next Argentina match card — live from football-data.org API
+- [x] **10.2** — Argentina matches list — results + upcoming, highlighted card
+- [x] **10.3** — Full knockout schedule — nested Accordion by stage (LAST_32, LAST_16, QF, SF, F)
+- [x] **10.4** — "Where to watch" section — cards for Buenos Aires and Bariloche
+- [x] **10.5** — SongCard — Spanish lyrics, Hebrew translation, YouTube link, copy button
+- [x] **10.6** — Fixed API stage names: LAST_32 / LAST_16 / THIRD_PLACE (2026 WC format)
 
-**Checkpoint:** Upload from phone camera works, photo appears in gallery ✅
+**Checkpoint:** Live match data, nested stage accordions, songs with YouTube links ✅
+
+---
+
+## Phase 11 — Photo Uploads ✅ COMPLETE
+
+- [x] **11.1** — Upload button in DestinationDrawer (תמונות tab)
+- [x] **11.2** — `<input type="file" accept="image/*" capture="environment">` for mobile camera
+- [x] **11.3** — Upload to Supabase `photos/{destination-id}/` path
+- [x] **11.4** — Photo gallery grid (3 columns) in תמונות tab
+- [x] **11.5** — Tap photo → full-screen lightbox modal
+- [x] **11.6** — Delete photo (removes from Supabase + gallery)
+- [x] **11.7** — `lib/photos.ts` — uploadPhoto, listPhotos, deletePhoto helpers
+
+**Checkpoint:** PhotoGallery renders, upload/delete flow works, lightbox opens ✅
 
 ---
 
 ## Phase 12 — PWA
 
 - [ ] **12.1** — Create `public/manifest.json` with name, icons, RTL, theme color `#74ACDF`
-- [ ] **12.2** — Create PWA icon assets (192×192, 512×512) in Argentina blue with flag
+- [ ] **12.2** — Create PWA icon assets (192×192, 512×512)
 - [ ] **12.3** — Configure `next-pwa` in `next.config.ts`
 - [ ] **12.4** — Test "Add to Home Screen" on iPhone Safari
 - [ ] **12.5** — Verify offline: Spanish phrasebook loads without internet
 
 **Checkpoint:** App installs from iPhone Safari, behaves like native app ✅
-
----
-
-## Phase 14 — Travel Journal Page (`/journal`) 🆕
-
-> New page added after planning session. A visual travel diary — photos + location + caption, organized automatically by trip day and destination.
-
-### Architecture decisions
-- **Route**: `app/journal/page.tsx` + `app/journal/layout.tsx` if needed
-- **Photo storage**: Supabase `photos` bucket → path `journal/{destinationId}/{timestamp}.jpg`
-- **Metadata storage**: `localStorage` key `"journal-moments"` (works offline, no backend needed)
-- **Location**: Browser Geolocation API + OpenStreetMap Nominatim reverse-geocode (free)
-- **Navbar**: Add "יומן מסע" as page 8 (Camera icon) to Navbar + HamburgerMenu
-
-### Phase 14.1 — Data model & helpers
-
-- [ ] **14.1.1** — Define `JournalMoment` interface in `types/journal.ts`
-  ```ts
-  interface JournalMoment {
-    id: string
-    day: number
-    date: string
-    destinationId: string
-    destinationHe: string
-    location: string
-    caption: string
-    photoPath: string | null
-    photoUrl: string | null
-    uploadedAt: string
-  }
-  ```
-- [ ] **14.1.2** — Create `lib/journal.ts`:
-  - `saveMoment(moment)` — save to localStorage
-  - `loadMoments()` — load + sort by date desc
-  - `deleteMoment(id)` — remove from localStorage
-  - `groupMomentsByDay(moments)` — returns `Map<number, JournalMoment[]>`
-- [ ] **14.1.3** — `lib/location.ts`:
-  - `getCurrentLocation()` — returns `{ lat, lng }` via `navigator.geolocation`
-  - `reverseGeocode(lat, lng)` — calls OSM Nominatim, returns Hebrew-friendly area string
-
-### Phase 14.2 — Add Moment Modal
-
-- [ ] **14.2.1** — `components/journal/AddMomentModal.tsx` (client component)
-  - Shows: trip day (auto), location (auto + editable), photo picker, caption textarea
-  - Location flow: "מזהה מיקום..." spinner → result → edit button
-  - Photo upload: `<input type="file" accept="image/*" capture="environment">`
-  - If no photo selected: saves text-only moment
-  - On submit: upload photo to Supabase → save moment to localStorage
-- [ ] **14.2.2** — Loading + error states in modal (upload progress, location error)
-
-### Phase 14.3 — Journal Feed
-
-- [ ] **14.3.1** — `components/journal/MomentCard.tsx`
-  - Photo (full-width, tappable for lightbox)
-  - Location badge + time
-  - Caption text
-  - Delete button (confirm dialog)
-- [ ] **14.3.2** — `components/journal/DaySection.tsx`
-  - Day heading: `יום 3 · 03.07 · בואנוס איירס`
-  - List of MomentCards for that day
-- [ ] **14.3.3** — `components/journal/JournalFeed.tsx` (client)
-  - Loads moments from localStorage on mount
-  - Groups by day using `groupMomentsByDay()`
-  - Renders DaySections in reverse-chronological order
-  - Empty state when no moments
-- [ ] **14.3.4** — Lightbox for full-screen photo view (reuse Modal component)
-
-### Phase 14.4 — Page & Navigation
-
-- [ ] **14.4.1** — `app/journal/page.tsx` — renders JournalFeed + FAB button
-- [ ] **14.4.2** — Add FAB (`+`) button — fixed bottom-right, opens AddMomentModal
-- [ ] **14.4.3** — Add "יומן מסע" to `components/layout/Navbar.tsx` (page 8)
-- [ ] **14.4.4** — Add "יומן מסע" to `components/layout/HamburgerMenu.tsx`
-- [ ] **14.4.5** — Add quick-access button on home page: `"📸 הוסף רגע"` → opens modal directly
-
-### Phase 14.5 — Polish & Testing
-
-- [ ] **14.5.1** — Test photo upload from iPhone camera
-- [ ] **14.5.2** — Test GPS permission flow (allow + deny)
-- [ ] **14.5.3** — Test offline: moments still visible without internet
-- [ ] **14.5.4** — Test delete moment
-- [ ] **14.5.5** — Verify lightbox opens and closes correctly
-- [ ] **14.5.6** — Verify empty state appears before trip
-
-**Checkpoint:** Add photo from camera → appears in feed with location + day · Delete works · Moments persist after page reload ✅
 
 ---
 
@@ -331,25 +227,53 @@
 - [ ] **13.4** — RTL correct on all pages and components
 - [ ] **13.5** — Color contrast meets WCAG AA minimum
 - [ ] **13.6** — Loading states for all API calls
-- [ ] **13.7** — Error/fallback states when API fails or has no internet
-- [ ] **13.8** — `<meta name="viewport" content="width=device-width, initial-scale=1">` confirmed
-- [ ] **13.9** — `<meta name="theme-color" content="#74ACDF">` confirmed
+- [ ] **13.7** — Error/fallback states when API fails
+- [ ] **13.8** — `<meta name="viewport">` confirmed
+- [ ] **13.9** — `<meta name="theme-color">` confirmed
 - [ ] **13.10** — Connect repo to Vercel, add all env vars, deploy + verify production URL
+
+---
+
+## Phase 14 — Travel Journal (`/journal`) ✅ COMPLETE
+
+- [x] **14.1.1** — `types/journal.ts` — JournalMoment interface
+- [x] **14.1.2** — `lib/journal.ts` — saveMoment, loadMoments, deleteMoment, groupMomentsByDay, generateId
+- [x] **14.1.3** — `lib/location.ts` — getCurrentLocation (GPS), reverseGeocode (OSM Nominatim), getLocationString
+- [x] **14.2.1** — `AddMomentModal.tsx` — trip day auto, GPS auto + manual fallback, photo picker, caption, save
+- [x] **14.2.2** — Loading + error states in modal (spinner, location error message)
+- [x] **14.3.1** — `MomentCard.tsx` — photo + lightbox, location + time, caption, delete with confirm
+- [x] **14.3.2** — `DaySection.tsx` — collapsible day header, moments list, most recent day open by default
+- [x] **14.3.3** — `JournalFeed.tsx` — loads localStorage, groups by day, empty state
+- [x] **14.3.4** — Lightbox built into MomentCard
+- [x] **14.4.1** — `app/journal/page.tsx` — page with header + JournalFeed
+- [x] **14.4.2** — FAB button "הוסף רגע" fixed bottom-left
+- [x] **14.4.3** — "יומן מסע" added to Navbar (page 8)
+- [x] **14.4.4** — "יומן מסע" added to HamburgerMenu
+- [x] **14.4.5** — Camera quick-add icon on home page (top-left)
+- [ ] **14.5.1** — Test photo upload from iPhone camera — **verify on real device**
+- [ ] **14.5.2** — Test GPS permission flow — **verify on real device**
+- [ ] **14.5.3** — Test offline: moments visible without internet
+- [ ] **14.5.4** — Test delete moment
+- [ ] **14.5.5** — Verify lightbox opens and closes correctly
+
+**Checkpoint:** Journal page opens, modal works, collapsible days, camera shortcut on home ✅
 
 ---
 
 ## Mobile Testing Checklist
 
 - [x] Hamburger nav works on tap — verified in preview
-- [ ] All buttons are at least 48px tall
+- [x] Drawer closes on outside tap — verified in preview
+- [x] Countdown calculates correctly
+- [x] Match times display in GMT-3 (Argentina time)
+- [ ] All buttons are at least 48px tall — verify on real device
 - [ ] No horizontal scroll on any page
 - [ ] Screen doesn't shift when keyboard opens
 - [ ] Call button opens phone dialer
 - [ ] Camera upload opens device camera
 - [ ] PDFs open in mobile browser
-- [ ] Countdown calculates correctly
-- [ ] Match times display in GMT-3 (Argentina time)
-- [x] Drawer closes on outside tap — verified in preview
+- [ ] Journal GPS works on real device
+- [ ] Photo upload from camera works
 
 ---
 
@@ -358,8 +282,9 @@
 - [ ] All environment variables added to Vercel project settings
 - [x] `.env.local` is in `.gitignore`
 - [x] `NEXT_PUBLIC_DOCS_PASSWORD` is set
-- [x] Supabase buckets are configured (private/public correctly) — `documents` bucket live; verify `photos` + CORS before deploy
-- [ ] HTTPS is active (automatic on Vercel)
+- [x] Supabase buckets: `documents` (private) + `photos` (public) — both created ✅
+- [ ] Supabase CORS configured for production Vercel domain
+- [ ] HTTPS active (automatic on Vercel)
 - [x] Build passes with no TypeScript errors
 - [ ] Vercel domain confirmed and accessible
 
@@ -367,9 +292,10 @@
 
 ## v2 — Add During the Trip
 
-- [ ] Update match schedule JSON + redeploy (~1 minute) as tournament progresses
-- [ ] Add newly discovered restaurants and places to `data/trip.ts`
-- [ ] Continue uploading photos to each destination as you go
+- [ ] Update World Cup match data as tournament progresses (edit `data/worldcup.ts` + redeploy)
+- [ ] Add newly discovered restaurants/places to `data/trip.ts`
+- [ ] Upload insurance + passport scans to Supabase
+- [ ] Add Bariloche accommodation when booked
 
 ---
 
@@ -378,7 +304,7 @@
 - [ ] Global search across all content
 - [ ] Favorites — bookmark restaurants, phrases, places
 - [ ] Text-to-speech for Spanish phrases (Web Speech API)
-- [ ] Photo gallery export
+- [ ] Journal photo export / slideshow
 - [ ] CMS / inline editor so content can be updated without touching code
 
 ---
@@ -388,17 +314,17 @@
 | Phase | Status | Notes |
 |---|---|---|
 | 0 — Setup | ✅ Complete | Tailwind v4, Heebo, RTL, colors |
-| 1 — Navbar | ✅ Complete | Mobile drawer + desktop topbar |
-| 2 — UI Components | ✅ Complete | 7 components verified |
-| 3 — Data Layer | ✅ Complete | 6 data files, 0 TS errors |
-| 4 — Home Page | ✅ Complete | Live APIs: weather, currency, football |
-| 5 — Trip Page | ✅ Complete | Drawer, checklist, localStorage |
-| 6 — Documents | ✅ Complete | 4/5 docs live · pending: BRC→EZE, insurance, passports |
-| 7 — Info Page | ✅ Complete | Packing checklist + emergency cards · pending: insurance #, SIM provider |
-| 8 — Spanish | ✅ Complete | 7 tabs, search, copy, MyMemory translation |
-| 9 — Map | ✅ Complete | Google My Maps iframe, full viewport |
-| 10 — World Cup | ✅ Complete | Live API, nested stage accordions |
-| 11 — Photos (drawer) | ✅ Complete | PhotoGallery + Supabase Storage + lightbox |
+| 1 — Navbar | ✅ Complete | 8 pages, mobile drawer + desktop topbar |
+| 2 — UI Components | ✅ Complete | 8 components incl. Flag, Accordion nested variant |
+| 3 — Data Layer | ✅ Complete | 9 data/type files, 55 phrases, 0 TS errors |
+| 4 — Home Page | ✅ Complete | Live APIs + journal quick-add |
+| 5 — Trip Page | ✅ Complete | Drawer, checklist, sub-trips, photos tab |
+| 6 — Documents | ✅ Complete | Supabase storage, signed URLs · pending: insurance/passports upload |
+| 7 — Info Page | ✅ Complete | Packing + emergency · pending: insurance #, SIM |
+| 8 — Spanish | ✅ Complete | 55 full sentences, search, translation |
+| 9 — Map | ✅ Complete | Leaflet/OSM, 43 places, sticky filters, external Google Maps link |
+| 10 — World Cup | ✅ Complete | Live API, 2026 stages (LAST_32/LAST_16), nested accordions, songs |
+| 11 — Photos (drawer) | ✅ Complete | PhotoGallery + Supabase + lightbox + delete |
 | 12 — PWA | 🔲 | |
-| 13 — QA | 🔲 | |
-| 14 — Travel Journal | ✅ Complete | Page 8 — collapsible days, GPS, modal, home shortcut |
+| 13 — QA + Vercel | 🔲 | |
+| 14 — Travel Journal | ✅ Complete | Page 8, collapsible days, GPS, modal, home shortcut |
