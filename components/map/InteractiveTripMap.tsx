@@ -32,7 +32,11 @@ export default function InteractiveTripMap({ places, selectedPlace, onSelectPlac
         shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
       });
 
-      const map = L.default.map(containerRef.current!, {
+      // Guard against double-init (React StrictMode)
+      const container = containerRef.current as any;
+      if (container._leaflet_id) return;
+
+      const map = L.default.map(container, {
         center: [-34.6037, -58.3816],
         zoom: 12,
         zoomControl: true,
