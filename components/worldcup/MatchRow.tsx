@@ -49,7 +49,7 @@ export default function MatchRow({ match, highlight = false }: Props) {
 
       {/* Date + time */}
       <p className="text-xs text-gray-400 mt-1.5 text-center">
-        {date} · {time} (ארגנטינה)
+        {date} · {time} <span className="text-gray-300">· GMT-3</span>
       </p>
     </div>
   );
