@@ -6,6 +6,7 @@ export interface Song {
   lyricsSpanish: string;
   translationHe: string;
   youtubeUrl: string;
+  audioUrl?: string;   // optional MP3 — enables inline audio player
 }
 
 export const songs: Song[] = [

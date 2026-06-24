@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Music, ExternalLink, Copy, ChevronDown } from "lucide-react";
 import Card from "@/components/ui/Card";
+import AudioPlayer from "./AudioPlayer";
 import type { Song } from "@/data/songs";
 
 export default function SongCard({ song }: { song: Song }) {
@@ -51,8 +52,13 @@ export default function SongCard({ song }: { song: Song }) {
         </div>
       )}
 
+      {/* Audio player — shows only if song has MP3 */}
+      {song.audioUrl && (
+        <AudioPlayer src={song.audioUrl} title={song.title} />
+      )}
+
       {/* Actions */}
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-2">
         <a
           href={song.youtubeUrl}
           target="_blank"
