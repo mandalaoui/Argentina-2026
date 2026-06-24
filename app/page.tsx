@@ -35,7 +35,7 @@ export default function HomePage() {
       <div className="pt-2 pb-1 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-navy flex items-center gap-2">
-            {onTrip ? "הטיול שלנו" : "Argentina 2026 Hub"}
+            {onTrip ? "הטיול שלנו" : "Argentina 2026"}
             <Flag code="AR" size={26} />
           </h1>
           <p className="text-sm text-gray-400 mt-0.5">

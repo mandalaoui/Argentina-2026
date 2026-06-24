@@ -62,15 +62,6 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
               {!isSubTrip && <Flag code={dest.flag} size={20} />}
               {isSubTrip ? sub.nameHe : dest.nameHe}
             </h2>
-            {!isSubTrip && (
-              <p className="text-xs text-gray-400 mt-0.5">
-                {new Date(dest.startDate).toLocaleDateString("he-IL", { day: "numeric", month: "short" })}
-                {" – "}
-                {new Date(dest.endDate).toLocaleDateString("he-IL", { day: "numeric", month: "short" })}
-                {" · "}
-                {dest.nights} לילות
-              </p>
-            )}
             {isSubTrip && (
               <p className="text-xs text-gray-400 mt-0.5">{sub.description}</p>
             )}

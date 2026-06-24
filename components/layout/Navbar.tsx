@@ -37,7 +37,9 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
-            <Flag code="AR" size={22} />
+            <span className="ring-1 ring-white/80 rounded-sm overflow-hidden inline-flex">
+              <Flag code="AR" size={22} />
+            </span>
             Argentina 2026
           </Link>
 

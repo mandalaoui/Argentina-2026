@@ -11,7 +11,7 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: "Argentina 2026 Hub",
+  title: "Argentina 2026",
   description: "המדריך האישי לטיול בארגנטינה 2026",
   manifest: "/manifest.json",
   appleWebApp: {
