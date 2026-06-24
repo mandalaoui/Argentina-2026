@@ -238,6 +238,91 @@
 
 ---
 
+## Phase 14 — Travel Journal Page (`/journal`) 🆕
+
+> New page added after planning session. A visual travel diary — photos + location + caption, organized automatically by trip day and destination.
+
+### Architecture decisions
+- **Route**: `app/journal/page.tsx` + `app/journal/layout.tsx` if needed
+- **Photo storage**: Supabase `photos` bucket → path `journal/{destinationId}/{timestamp}.jpg`
+- **Metadata storage**: `localStorage` key `"journal-moments"` (works offline, no backend needed)
+- **Location**: Browser Geolocation API + OpenStreetMap Nominatim reverse-geocode (free)
+- **Navbar**: Add "יומן מסע" as page 8 (Camera icon) to Navbar + HamburgerMenu
+
+### Phase 14.1 — Data model & helpers
+
+- [ ] **14.1.1** — Define `JournalMoment` interface in `types/journal.ts`
+  ```ts
+  interface JournalMoment {
+    id: string
+    day: number
+    date: string
+    destinationId: string
+    destinationHe: string
+    location: string
+    caption: string
+    photoPath: string | null
+    photoUrl: string | null
+    uploadedAt: string
+  }
+  ```
+- [ ] **14.1.2** — Create `lib/journal.ts`:
+  - `saveMoment(moment)` — save to localStorage
+  - `loadMoments()` — load + sort by date desc
+  - `deleteMoment(id)` — remove from localStorage
+  - `groupMomentsByDay(moments)` — returns `Map<number, JournalMoment[]>`
+- [ ] **14.1.3** — `lib/location.ts`:
+  - `getCurrentLocation()` — returns `{ lat, lng }` via `navigator.geolocation`
+  - `reverseGeocode(lat, lng)` — calls OSM Nominatim, returns Hebrew-friendly area string
+
+### Phase 14.2 — Add Moment Modal
+
+- [ ] **14.2.1** — `components/journal/AddMomentModal.tsx` (client component)
+  - Shows: trip day (auto), location (auto + editable), photo picker, caption textarea
+  - Location flow: "מזהה מיקום..." spinner → result → edit button
+  - Photo upload: `<input type="file" accept="image/*" capture="environment">`
+  - If no photo selected: saves text-only moment
+  - On submit: upload photo to Supabase → save moment to localStorage
+- [ ] **14.2.2** — Loading + error states in modal (upload progress, location error)
+
+### Phase 14.3 — Journal Feed
+
+- [ ] **14.3.1** — `components/journal/MomentCard.tsx`
+  - Photo (full-width, tappable for lightbox)
+  - Location badge + time
+  - Caption text
+  - Delete button (confirm dialog)
+- [ ] **14.3.2** — `components/journal/DaySection.tsx`
+  - Day heading: `יום 3 · 03.07 · בואנוס איירס`
+  - List of MomentCards for that day
+- [ ] **14.3.3** — `components/journal/JournalFeed.tsx` (client)
+  - Loads moments from localStorage on mount
+  - Groups by day using `groupMomentsByDay()`
+  - Renders DaySections in reverse-chronological order
+  - Empty state when no moments
+- [ ] **14.3.4** — Lightbox for full-screen photo view (reuse Modal component)
+
+### Phase 14.4 — Page & Navigation
+
+- [ ] **14.4.1** — `app/journal/page.tsx` — renders JournalFeed + FAB button
+- [ ] **14.4.2** — Add FAB (`+`) button — fixed bottom-right, opens AddMomentModal
+- [ ] **14.4.3** — Add "יומן מסע" to `components/layout/Navbar.tsx` (page 8)
+- [ ] **14.4.4** — Add "יומן מסע" to `components/layout/HamburgerMenu.tsx`
+- [ ] **14.4.5** — Add quick-access button on home page: `"📸 הוסף רגע"` → opens modal directly
+
+### Phase 14.5 — Polish & Testing
+
+- [ ] **14.5.1** — Test photo upload from iPhone camera
+- [ ] **14.5.2** — Test GPS permission flow (allow + deny)
+- [ ] **14.5.3** — Test offline: moments still visible without internet
+- [ ] **14.5.4** — Test delete moment
+- [ ] **14.5.5** — Verify lightbox opens and closes correctly
+- [ ] **14.5.6** — Verify empty state appears before trip
+
+**Checkpoint:** Add photo from camera → appears in feed with location + day · Delete works · Moments persist after page reload ✅
+
+---
+
 ## Phase 13 — QA & Polish
 
 - [ ] **13.1** — Full walkthrough on iPhone (Safari)
@@ -313,6 +398,7 @@
 | 8 — Spanish | ✅ Complete | 7 tabs, search, copy, MyMemory translation |
 | 9 — Map | ✅ Complete | Google My Maps iframe, full viewport |
 | 10 — World Cup | ✅ Complete | Live API, nested stage accordions |
-| 11 — Photos | 🔲 | Supabase setup needed |
+| 11 — Photos (drawer) | ✅ Complete | PhotoGallery + Supabase Storage + lightbox |
 | 12 — PWA | 🔲 | |
 | 13 — QA | 🔲 | |
+| 14 — Travel Journal | 🔲 Next | Page 8 — photos + location + caption diary |

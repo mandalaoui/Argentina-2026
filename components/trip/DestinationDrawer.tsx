@@ -5,6 +5,7 @@ import { X, Hotel, Utensils, Star, Beer, Lightbulb, Camera, MapPin, ExternalLink
 import type { Destination, SubTrip } from "@/data/trip";
 import Flag from "@/components/ui/Flag";
 import { ActivityChecklist, PlaceList } from "./ActivityChecklist";
+import PhotoGallery from "./PhotoGallery";
 
 const TABS = [
   { id: "accommodation", label: "לינה",      icon: Hotel },
@@ -189,11 +190,7 @@ export default function DestinationDrawer({ destination, isOpen, onClose, isSubT
 
           {/* ─── תמונות ─── */}
           {activeTab === "photos" && (
-            <div className="flex flex-col items-center justify-center py-8 gap-3 text-center">
-              <Camera size={36} className="text-gray-300" />
-              <p className="text-sm text-gray-400">גלריה תמונות</p>
-              <p className="text-xs text-gray-300">העלאת תמונות תהיה זמינה ב-Phase 11</p>
-            </div>
+            <PhotoGallery destinationId={destination.id} />
           )}
 
         </div>

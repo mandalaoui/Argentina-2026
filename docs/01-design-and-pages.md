@@ -98,6 +98,7 @@ fixed right-0 top-0 h-full w-72 bg-white shadow-xl z-50
 | ℹ️ מידע שימושי | Info |
 | 🇦🇷 ספרדית | MessageSquare |
 | ⚽ מונדיאל | Trophy |
+| 📸 יומן מסע | Camera |
 
 ### Desktop — Standard Topbar
 
@@ -105,7 +106,7 @@ fixed right-0 top-0 h-full w-72 bg-white shadow-xl z-50
 bg-[#74ACDF] text-white h-16 flex items-center justify-between px-8
 ```
 - **Left**: Logo + name
-- **Center**: Horizontal nav links for all 7 pages
+- **Center**: Horizontal nav links for all 8 pages
 - **Right**: Empty / search
 
 ---
@@ -121,6 +122,7 @@ bg-[#74ACDF] text-white h-16 flex items-center justify-between px-8
 5. מידע שימושי (Useful Info)
 6. ספרדית (Spanish)
 7. מונדיאל (World Cup)
+8. יומן מסע (Travel Journal)
 
 ---
 
@@ -374,6 +376,94 @@ Each song — card:
 │ [▶ פתח YouTube] [📋 העתק]       │
 └─────────────────────────────────┘
 ```
+
+---
+
+## Page 8 — Travel Journal (`/journal`)
+
+A chronological photo diary of the trip. Each "moment" (רגע) contains a photo, location, caption, and is automatically tagged with the trip day and destination.
+
+### Primary Action
+
+A fixed **"+ הוסף רגע"** button (bottom-right FAB on mobile) opens the Add Moment modal at any time.
+
+### Add Moment Modal
+
+Fields presented in order:
+
+1. **Trip day** — Auto-detected (`יום 3 מתוך 12`), read-only
+2. **Location** — Requests GPS permission:
+   - If granted: reverse-geocoded via OpenStreetMap Nominatim → shows `"Palermo Soho, בואנוס איירס"`
+   - If denied: free-text input field
+3. **Photo** — Camera / gallery picker (`<input type="file" accept="image/*" capture="environment">`)
+   - Optional — a moment can be text-only
+4. **Caption** — Short textarea (`placeholder="מה קורה כאן?"`)
+5. **Save button**: `"שמור רגע"` — uploads photo to Supabase, saves metadata to localStorage
+
+### Feed Layout (Mobile)
+
+```
+📸 יומן המסע
+
+──── יום 3 · 03.07 · בואנוס איירס ────
+
+  [Photo]
+  📍 Palermo Soho · 20:14
+  "ארוחת ערב מדהימה ב-Don Julio"
+
+  [Photo]
+  📍 Recoleta · 16:30
+  "בית הקברות — מרשים מהצפוי"
+
+──── יום 2 · 02.07 · בואנוס איירס ────
+
+  📍 Puerto Madero · 19:00
+  "טיילת פוארטו מאדרו — שקט ויפה"
+
+──── יום 1 · 01.07 · הגעה ────
+  ...
+```
+
+### Moment Card
+
+Each card contains:
+- Photo (full width, rounded corners) — tappable for lightbox
+- Location badge: `📍 Palermo Soho`
+- Time: `20:14`
+- Caption text (if exists)
+- Long-press or swipe → delete option
+
+### Empty State (before trip / no moments)
+
+```
+📷
+עדיין אין רגעים מוקלטים.
+לחץ על + כדי להוסיף את הרגע הראשון.
+```
+
+### Desktop Layout
+
+Two-column: left = feed, right = selected moment enlarged.
+
+### Data Model (localStorage)
+
+```typescript
+interface JournalMoment {
+  id: string
+  day: number              // trip day number (1–12)
+  date: string             // ISO date string
+  destinationId: string    // "buenos-aires" | "bariloche" | etc.
+  destinationHe: string    // "בואנוס איירס"
+  location: string         // reverse-geocoded or manual
+  caption: string
+  photoPath: string | null // Supabase path, null if no photo
+  photoUrl: string | null  // Supabase public URL
+  uploadedAt: string       // ISO datetime
+}
+```
+
+Storage key: `"journal-moments"`  
+Photos stored in: `photos/journal/{destinationId}/{timestamp}.jpg`
 
 ---
 
