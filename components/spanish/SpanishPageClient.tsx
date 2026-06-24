@@ -1,15 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
-import Tabs from "@/components/ui/Tabs";
+import { Search, ChevronRight } from "lucide-react";
 import Flag from "@/components/ui/Flag";
 import PhraseCard from "@/components/spanish/PhraseCard";
+import CategoryGrid from "@/components/spanish/CategoryGrid";
 import TranslationWidget from "@/components/spanish/TranslationWidget";
 import {
   phrases,
-  phraseCategories,
-  categoryTabLabels,
+  categoryLabels,
+  categoryEmojis,
   type PhraseCategory,
 } from "@/data/phrases";
 
@@ -27,25 +27,20 @@ function filterPhrases(list: typeof phrases, query: string) {
 
 export default function SpanishPageClient() {
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<PhraseCategory | null>(
+    null
+  );
 
-  const tabs = phraseCategories.map((id) => ({
-    id,
-    label: categoryTabLabels[id],
-  }));
+  const isSearching = search.trim().length > 0;
 
-  const phrasesByCategory = useMemo(() => {
-    const map = new Map<PhraseCategory, typeof phrases>();
-    for (const category of phraseCategories) {
-      map.set(
-        category,
-        filterPhrases(
-          phrases.filter((p) => p.category === category),
-          search
-        )
-      );
-    }
-    return map;
-  }, [search]);
+  const filteredPhrases = useMemo(() => {
+    const base = selectedCategory
+      ? phrases.filter((p) => p.category === selectedCategory)
+      : phrases;
+    return filterPhrases(base, search);
+  }, [search, selectedCategory]);
+
+  const handleBack = () => setSelectedCategory(null);
 
   return (
     <main className="p-4 max-w-lg mx-auto pb-24">
@@ -72,26 +67,50 @@ export default function SpanishPageClient() {
         />
       </div>
 
-      <Tabs tabs={tabs} defaultTab="basic">
-        {(activeTab) => {
-          const category = activeTab as PhraseCategory;
-          const filtered = phrasesByCategory.get(category) ?? [];
+      {selectedCategory ? (
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <button
+              type="button"
+              onClick={handleBack}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-argentina-light text-navy hover:bg-argentina/20 transition-colors shrink-0"
+              aria-label="חזרה לקטגוריות"
+            >
+              <ChevronRight size={22} aria-hidden="true" />
+            </button>
+            <h2 className="flex-1 text-base font-semibold text-navy flex items-center gap-2">
+              <span aria-hidden="true">{categoryEmojis[selectedCategory]}</span>
+              {categoryLabels[selectedCategory]}
+            </h2>
+          </div>
 
-          return (
-            <div className="space-y-3">
-              {filtered.length > 0 ? (
-                filtered.map((phrase) => (
-                  <PhraseCard key={phrase.id} phrase={phrase} />
-                ))
-              ) : (
-                <p className="text-sm text-gray-500 text-center py-8">
-                  לא נמצאו ביטויים
-                </p>
-              )}
-            </div>
-          );
-        }}
-      </Tabs>
+          <div className="space-y-3">
+            {filteredPhrases.length > 0 ? (
+              filteredPhrases.map((phrase) => (
+                <PhraseCard key={phrase.id} phrase={phrase} />
+              ))
+            ) : (
+              <p className="text-sm text-gray-500 text-center py-8">
+                לא נמצאו ביטויים
+              </p>
+            )}
+          </div>
+        </div>
+      ) : isSearching ? (
+        <div className="space-y-3">
+          {filteredPhrases.length > 0 ? (
+            filteredPhrases.map((phrase) => (
+              <PhraseCard key={phrase.id} phrase={phrase} />
+            ))
+          ) : (
+            <p className="text-sm text-gray-500 text-center py-8">
+              לא נמצאו ביטויים
+            </p>
+          )}
+        </div>
+      ) : (
+        <CategoryGrid onSelect={setSelectedCategory} />
+      )}
 
       <TranslationWidget />
     </main>

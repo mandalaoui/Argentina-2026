@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Copy, Check } from "lucide-react";
-import Card from "@/components/ui/Card";
+import { Volume2 } from "lucide-react";
+import { speakSpanish } from "@/lib/speak-spanish";
 import type { Phrase } from "@/data/phrases";
 
 interface PhraseCardProps {
@@ -10,45 +9,26 @@ interface PhraseCardProps {
 }
 
 export default function PhraseCard({ phrase }: PhraseCardProps) {
-  const [copied, setCopied] = useState(false);
-
-  const copySpanish = async () => {
-    await navigator.clipboard.writeText(phrase.spanish);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const playAudio = () => speakSpanish(phrase.spanish);
 
   return (
-    <Card className="flex flex-col gap-2">
-      <p className="text-sm font-medium text-navy">
-        <span aria-hidden="true">🇮🇱 </span>
-        {phrase.hebrew}
-      </p>
-      <p className="text-base font-semibold text-argentina" dir="ltr">
-        <span aria-hidden="true">🇦🇷 </span>
-        {phrase.spanish}
-      </p>
-      <p className="text-sm text-gray-500">
-        <span aria-hidden="true">🔤 </span>
-        {phrase.transliteration}
-      </p>
+    <div className="flex items-center gap-3 rounded-2xl border border-argentina-light bg-white p-4 shadow-sm">
+      <div className="flex-1 min-w-0 text-right">
+        <p className="text-base font-semibold text-navy leading-snug">
+          {phrase.hebrew}
+        </p>
+        <p className="text-sm text-argentina mt-1 leading-snug" dir="ltr">
+          {phrase.spanish}
+        </p>
+      </div>
       <button
-        onClick={copySpanish}
-        className="flex items-center gap-1.5 self-start border border-argentina text-argentina px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-argentina-light transition-colors min-h-[44px]"
-        aria-label={`העתק את הביטוי ${phrase.spanish}`}
+        type="button"
+        onClick={playAudio}
+        className="shrink-0 items-center justify-center w-11 h-11 rounded-full bg-argentina-light text-argentina hover:bg-argentina/20 active:scale-95 transition-all"
+        aria-label={`השמע את הביטוי ${phrase.spanish}`}
       >
-        {copied ? (
-          <>
-            <Check size={16} aria-hidden="true" />
-            הועתק
-          </>
-        ) : (
-          <>
-            <Copy size={16} aria-hidden="true" />
-            העתק
-          </>
-        )}
+        <Volume2 size={20} aria-hidden="true" />
       </button>
-    </Card>
+    </div>
   );
 }

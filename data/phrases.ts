@@ -25,6 +25,17 @@ export const categoryLabels: Record<PhraseCategory, string> = {
   football:   "כדורגל",
 };
 
+/** Emoji icons for category cards on the Spanish page */
+export const categoryEmojis: Record<PhraseCategory, string> = {
+  basic:      "💬",
+  restaurant: "🍽️",
+  hotel:      "🏨",
+  transport:  "🚕",
+  money:      "💰",
+  emergency:  "🆘",
+  football:   "⚽",
+};
+
 /** Short tab labels for the Spanish page */
 export const categoryTabLabels: Record<PhraseCategory, string> = {
   basic:      "שיחות",

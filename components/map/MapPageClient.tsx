@@ -59,7 +59,7 @@ export default function MapPageClient({ places }: Props) {
     <div className="flex flex-col h-full max-w-5xl mx-auto">
 
       {/* ── Page title (not sticky) ─────────────────────── */}
-      <div className="px-4 pt-4 pb-2 flex-shrink-0">
+      <div className="px-4 pt-4 pb-2 shrink-0">
         <h1 className="text-xl md:text-2xl font-bold text-navy">מפת הטיול</h1>
         <p className="text-xs text-gray-400 mt-0.5">
           מסעדות, ברים, אטרקציות, קניות ותחבורה
@@ -67,7 +67,7 @@ export default function MapPageClient({ places }: Props) {
       </div>
 
       {/* ── Sticky search + filters (stays above map) ───── */}
-      <div className="sticky top-14 z-20 bg-white border-b border-argentina-light px-4 py-2 flex-shrink-0 space-y-2">
+      <div className="sticky top-14 z-20 bg-white border-b border-argentina-light px-4 py-2 shrink-0 space-y-2">
         {/* Search */}
         <div className="relative">
           <Search size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true" />
@@ -103,7 +103,7 @@ export default function MapPageClient({ places }: Props) {
       <div className="flex-1 md:flex md:gap-0 overflow-hidden">
 
         {/* ── LEFT (desktop sticky) / TOP (mobile) ───── */}
-        <div className="md:w-1/2 md:sticky md:top-0 md:h-screen md:overflow-y-auto md:border-l md:border-argentina-light flex-shrink-0">
+        <div className="md:w-1/2 md:sticky md:top-0 md:h-screen md:overflow-y-auto md:border-l md:border-argentina-light shrink-0">
           {/* Map */}
           <div id="trip-map" className="px-4 pt-3 pb-2 md:px-4 md:pt-4">
             <Suspense fallback={
