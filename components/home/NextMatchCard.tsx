@@ -27,15 +27,15 @@ export default async function NextMatchCard() {
               <span className="text-xs font-bold text-red-600 animate-pulse">{liveStatus}</span>
             )}
           </div>
-          <p className="text-lg font-bold text-navy mb-1">
+          <p className="text-lg font-bold text-navy mb-1 text-center">
             {apiMatch.homeTeam} 🆚 {apiMatch.awayTeam}
           </p>
           {apiMatch.homeScore !== null && (
-            <p className="text-2xl font-bold text-argentina mb-1">
+            <p className="text-2xl font-bold text-argentina mb-1 text-center">
               {apiMatch.homeScore} – {apiMatch.awayScore}
             </p>
           )}
-          <p className="text-sm text-gray-500">{date} · {time} (שעון ארגנטינה)</p>
+          <p className="text-sm text-gray-500 text-center">{date} · {time} (שעון ארגנטינה)</p>
         </Card>
       </Link>
     );
@@ -59,11 +59,11 @@ export default async function NextMatchCard() {
           <Trophy size={16} className="text-navy" aria-hidden="true" />
           <span className="text-sm font-semibold text-navy">המשחק הבא של ארגנטינה</span>
         </div>
-        <p className="text-lg font-bold text-navy mb-1">
+        <p className="text-lg font-bold text-navy mb-1 text-center">
           {staticMatch.teamA} 🆚 {staticMatch.teamB}
         </p>
-        <p className="text-sm text-gray-600">{staticMatch.stageLabel}</p>
-        <p className="text-sm text-gray-500 mt-1">{dateStr} · {timeStr} (שעון ארגנטינה)</p>
+        <p className="text-sm text-gray-600 text-center">{staticMatch.stageLabel}</p>
+        <p className="text-sm text-gray-500 mt-1 text-center">{dateStr} · {timeStr} (שעון ארגנטינה)</p>
       </Card>
     </Link>
   );

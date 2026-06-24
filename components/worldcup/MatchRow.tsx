@@ -26,13 +26,13 @@ export default function MatchRow({ match, highlight = false }: Props) {
         )}
       </div>
 
-      {/* Teams + score */}
-      <div className="flex items-center justify-between gap-2">
-        <span className={`text-sm font-semibold flex-1 text-right ${highlight ? "text-navy" : "text-navy"}`}>
+      {/* Teams + score — centered */}
+      <div className="flex items-center justify-center gap-2">
+        <span className="text-sm font-semibold text-navy">
           {match.homeTeam}
         </span>
 
-        <div className="flex-shrink-0 text-center">
+        <div className="flex-shrink-0">
           {isFinished && match.homeScore !== null ? (
             <span className="text-base font-bold text-argentina">
               {match.homeScore} – {match.awayScore}
@@ -42,7 +42,7 @@ export default function MatchRow({ match, highlight = false }: Props) {
           )}
         </div>
 
-        <span className={`text-sm font-semibold flex-1 text-left ${highlight ? "text-navy" : "text-navy"}`}>
+        <span className="text-sm font-semibold text-navy">
           {match.awayTeam}
         </span>
       </div>
