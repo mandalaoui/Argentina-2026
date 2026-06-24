@@ -60,7 +60,7 @@ export default function AudioPlayer({ src, title }: Props) {
   const pct = duration > 0 ? (current / duration) * 100 : 0;
 
   return (
-    <div className="bg-argentina-light/50 rounded-xl px-3 py-2.5 mt-2">
+    <div className="bg-argentina-light/50 rounded-xl px-3 py-2.5 mt-2" dir="ltr">
       <audio ref={audioRef} src={src} preload="metadata" />
 
       {/* Controls */}
