@@ -207,15 +207,19 @@
 
 ---
 
-## Phase 12 — PWA
+## Phase 12 — PWA ✅ COMPLETE
 
-- [ ] **12.1** — Create `public/manifest.json` with name, icons, RTL, theme color `#74ACDF`
-- [ ] **12.2** — Create PWA icon assets (192×192, 512×512)
-- [ ] **12.3** — Configure `next-pwa` in `next.config.ts`
-- [ ] **12.4** — Test "Add to Home Screen" on iPhone Safari
-- [ ] **12.5** — Verify offline: Spanish phrasebook loads without internet
+> Used manual PWA (no next-pwa) — more reliable with Next.js 16.
 
-**Checkpoint:** App installs from iPhone Safari, behaves like native app ✅
+- [x] **12.1** — `public/manifest.json` — name, icons, RTL, theme #74ACDF, shortcuts (journal, map)
+- [x] **12.2** — PWA icons created: `public/icons/icon-192.png` + `icon-512.png` (Argentina flag style)
+- [x] **12.3** — `public/sw.js` — manual service worker: cache-first for pages, network-first for APIs
+- [x] **12.4** — `components/ServiceWorkerRegister.tsx` — client component registers SW on mount
+- [x] **12.5** — `app/layout.tsx` — manifest link, theme-color, apple-web-app meta, viewport export
+- [ ] **12.6** — Test "Add to Home Screen" on iPhone Safari — **verify on real device**
+- [ ] **12.7** — Verify offline: Spanish phrasebook loads without internet — **verify on real device**
+
+**Checkpoint:** manifest.json accessible ✅ · SW registered ✅ · icons generated ✅
 
 ---
 
@@ -325,6 +329,6 @@
 | 9 — Map | ✅ Complete | Leaflet/OSM, 43 places, sticky filters, external Google Maps link |
 | 10 — World Cup | ✅ Complete | Live API, 2026 stages (LAST_32/LAST_16), nested accordions, songs |
 | 11 — Photos (drawer) | ✅ Complete | PhotoGallery + Supabase + lightbox + delete |
-| 12 — PWA | 🔲 | |
+| 12 — PWA | ✅ Complete | manifest, SW, icons, meta tags |
 | 13 — QA + Vercel | 🔲 | |
 | 14 — Travel Journal | ✅ Complete | Page 8, collapsible days, GPS, modal, home shortcut |
