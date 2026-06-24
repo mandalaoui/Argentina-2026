@@ -14,8 +14,10 @@ export default function JournalFeed() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMoments(loadMoments());
-    setMounted(true);
+    loadMoments().then((data) => {
+      setMoments(data);
+      setMounted(true);
+    });
   }, []);
 
   const handleSaved = useCallback((moment: JournalMoment) => {
@@ -24,9 +26,8 @@ export default function JournalFeed() {
 
   const handleDelete = useCallback(async (id: string) => {
     const moment = moments.find((m) => m.id === id);
-    // Remove from state + localStorage
-    deleteMoment(id);
     setMoments((prev) => prev.filter((m) => m.id !== id));
+    await deleteMoment(id);
     // Delete photo from Supabase if exists
     if (moment?.photoPath) {
       await deletePhoto(moment.photoPath).catch(() => {});

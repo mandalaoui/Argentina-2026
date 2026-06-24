@@ -13,10 +13,11 @@ function useCheckStorage(storageKey: string) {
   const [checks, setChecks] = useState<Record<string, CheckState>>({});
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) setChecks(JSON.parse(saved));
-    } catch {}
+    import("@/lib/supabase-storage").then(({ dbGet }) =>
+      dbGet<Record<string, CheckState>>(storageKey).then((data) => {
+        if (data) setChecks(data);
+      })
+    );
   }, [storageKey]);
 
   const toggle = (id: string) => {
@@ -26,9 +27,7 @@ function useCheckStorage(storageKey: string) {
         ? { completed: false }
         : { completed: true, completedAt: new Date().toISOString() };
       const updated = { ...prev, [id]: next };
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(updated));
-      } catch {}
+      import("@/lib/supabase-storage").then(({ dbSet }) => dbSet(storageKey, updated));
       return updated;
     });
   };

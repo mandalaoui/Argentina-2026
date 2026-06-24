@@ -1,35 +1,28 @@
 import type { JournalMoment } from "@/types/journal";
+import { dbGet, dbSet } from "./supabase-storage";
 
 const STORAGE_KEY = "journal-moments";
 
-export function loadMoments(): JournalMoment[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const moments: JournalMoment[] = JSON.parse(raw);
-    // Sort newest first
-    return moments.sort(
-      (a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
-    );
-  } catch {
-    return [];
-  }
+function sortMoments(moments: JournalMoment[]): JournalMoment[] {
+  return moments.sort(
+    (a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
+  );
 }
 
-export function saveMoment(moment: JournalMoment): void {
-  try {
-    const existing = loadMoments();
-    const updated = [moment, ...existing.filter((m) => m.id !== moment.id)];
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-  } catch {}
+export async function loadMoments(): Promise<JournalMoment[]> {
+  const data = await dbGet<JournalMoment[]>(STORAGE_KEY);
+  return data ? sortMoments(data) : [];
 }
 
-export function deleteMoment(id: string): void {
-  try {
-    const existing = loadMoments();
-    const updated = existing.filter((m) => m.id !== id);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-  } catch {}
+export async function saveMoment(moment: JournalMoment): Promise<void> {
+  const existing = await loadMoments();
+  const updated = [moment, ...existing.filter((m) => m.id !== moment.id)];
+  await dbSet(STORAGE_KEY, updated);
+}
+
+export async function deleteMoment(id: string): Promise<void> {
+  const existing = await loadMoments();
+  await dbSet(STORAGE_KEY, existing.filter((m) => m.id !== id));
 }
 
 /** Group moments by trip day, sorted newest day first */

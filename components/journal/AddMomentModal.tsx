@@ -103,7 +103,7 @@ export default function AddMomentModal({ isOpen, onClose, onSaved }: Props) {
         uploadedAt: now.toISOString(),
       };
 
-      saveMoment(moment);
+      await saveMoment(moment);
       onSaved(moment);
       onClose();
     } catch {

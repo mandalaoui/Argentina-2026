@@ -16,10 +16,11 @@ export function usePackingStorage() {
   const [checks, setChecks] = useState<Record<string, CheckState>>({});
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(PACKING_STORAGE_KEY);
-      if (saved) setChecks(JSON.parse(saved));
-    } catch {}
+    import("@/lib/supabase-storage").then(({ dbGet }) =>
+      dbGet<Record<string, CheckState>>(PACKING_STORAGE_KEY).then((data) => {
+        if (data) setChecks(data);
+      })
+    );
   }, []);
 
   const toggle = (id: string) => {
@@ -29,9 +30,7 @@ export function usePackingStorage() {
         ? { completed: false }
         : { completed: true, completedAt: new Date().toISOString() };
       const updated = { ...prev, [id]: next };
-      try {
-        localStorage.setItem(PACKING_STORAGE_KEY, JSON.stringify(updated));
-      } catch {}
+      import("@/lib/supabase-storage").then(({ dbSet }) => dbSet(PACKING_STORAGE_KEY, updated));
       return updated;
     });
   };

@@ -14,26 +14,25 @@ interface GiftRow {
 
 const STORAGE_KEY = "gifts-list";
 
-function loadGifts(): GiftRow[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    // ensure backward compat: add done/editing if missing
-    const rows = JSON.parse(raw) as Partial<GiftRow>[];
-    return rows.map((r) => ({
-      id: r.id ?? Date.now().toString(),
-      name: r.name ?? "",
-      gift: r.gift ?? "",
-      done: r.done ?? false,
-      editing: false, // always start locked
-    }));
-  } catch { return []; }
+function normalizeRows(raw: Partial<GiftRow>[]): GiftRow[] {
+  return raw.map((r) => ({
+    id: r.id ?? Date.now().toString(),
+    name: r.name ?? "",
+    gift: r.gift ?? "",
+    done: r.done ?? false,
+    editing: false,
+  }));
 }
 
-function saveGifts(rows: GiftRow[]) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(rows));
-  } catch {}
+async function loadGifts(): Promise<GiftRow[]> {
+  const { dbGet } = await import("@/lib/supabase-storage");
+  const data = await dbGet<Partial<GiftRow>[]>(STORAGE_KEY);
+  return data ? normalizeRows(data) : [];
+}
+
+async function saveGifts(rows: GiftRow[]) {
+  const { dbSet } = await import("@/lib/supabase-storage");
+  await dbSet(STORAGE_KEY, rows);
 }
 
 // ─── Password Gate ──────────────────────────────────────────────────────────
@@ -94,13 +93,15 @@ function GiftsTable() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setRows(loadGifts());
-    setMounted(true);
+    loadGifts().then((data) => {
+      setRows(data);
+      setMounted(true);
+    });
   }, []);
 
   const mutate = (next: GiftRow[]) => {
     setRows(next);
-    saveGifts(next);
+    saveGifts(next); // fire-and-forget async save
   };
 
   const update = (id: string, field: "name" | "gift", value: string) => {
