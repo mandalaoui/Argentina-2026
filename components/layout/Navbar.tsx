@@ -15,6 +15,7 @@ const navItems = [
   { href: "/info",      label: "מידע שימושי" },
   { href: "/spanish",   label: "ספרדית" },
   { href: "/worldcup",  label: "מונדיאל" },
+  { href: "/journal",   label: "יומן" },
 ];
 
 export default function Navbar() {

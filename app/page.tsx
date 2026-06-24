@@ -8,6 +8,7 @@ import CurrencyCard from "@/components/home/CurrencyCard";
 import NextMatchCard from "@/components/home/NextMatchCard";
 import Card from "@/components/ui/Card";
 import Flag from "@/components/ui/Flag";
+import JournalQuickAdd from "@/components/journal/JournalQuickAdd";
 import { getTripDayInfo } from "@/data/trip";
 
 function isOnTrip() {
@@ -31,14 +32,17 @@ export default function HomePage() {
     <main className="p-4 space-y-4 max-w-lg mx-auto pb-8">
 
       {/* Header */}
-      <div className="pt-2 pb-1">
-        <h1 className="text-2xl font-bold text-navy flex items-center gap-2">
-          {onTrip ? "הטיול שלנו" : "Argentina 2026 Hub"}
-          <Flag code="AR" size={26} />
-        </h1>
-        <p className="text-sm text-gray-400 mt-0.5">
-          {onTrip ? "מה קורה היום" : "הכנות לטיול"}
-        </p>
+      <div className="pt-2 pb-1 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-navy flex items-center gap-2">
+            {onTrip ? "הטיול שלנו" : "Argentina 2026 Hub"}
+            <Flag code="AR" size={26} />
+          </h1>
+          <p className="text-sm text-gray-400 mt-0.5">
+            {onTrip ? "מה קורה היום" : "הכנות לטיול"}
+          </p>
+        </div>
+        <JournalQuickAdd />
       </div>
 
       {/* Pre-trip: countdown */}

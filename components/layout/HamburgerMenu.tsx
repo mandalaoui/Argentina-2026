@@ -1,6 +1,6 @@
 "use client";
 
-import { X, Home, Map, MapPin, FileText, Info, MessageSquare, Trophy, type LucideIcon } from "lucide-react";
+import { X, Home, Map, MapPin, FileText, Info, MessageSquare, Trophy, Camera, type LucideIcon } from "lucide-react";
 import Flag from "@/components/ui/Flag";
 import Link from "next/link";
 import { useNavActive } from "./useNavActive";
@@ -13,6 +13,7 @@ const navItems = [
   { href: "/info",      label: "מידע שימושי",    icon: Info },
   { href: "/spanish",   label: "ספרדית",         icon: MessageSquare },
   { href: "/worldcup",  label: "מונדיאל",        icon: Trophy },
+  { href: "/journal",   label: "יומן מסע",       icon: Camera },
 ];
 
 interface HamburgerMenuProps {
