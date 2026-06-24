@@ -51,13 +51,13 @@ export default async function WorldCupPage() {
                 <span className="text-xs font-bold text-red-600 animate-pulse">🔴 משחק חי</span>
               )}
             </div>
-            <p className="text-xl font-bold text-navy">
+            <p className="text-xl font-bold text-navy text-center">
               {nextMatch.homeTeam} 🆚 {nextMatch.awayTeam}
             </p>
             {(() => {
               const { date, time } = formatMatchTime(nextMatch.date);
               return (
-                <p className="text-sm text-gray-500 mt-1">{date} · {time} (שעון ארגנטינה)</p>
+                <p className="text-sm text-gray-500 mt-1 text-center">{date} · {time} (שעון ארגנטינה)</p>
               );
             })()}
           </Card>
