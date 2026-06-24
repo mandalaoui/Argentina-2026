@@ -234,7 +234,7 @@
 - [ ] **13.7** — Error/fallback states when API fails
 - [ ] **13.8** — `<meta name="viewport">` confirmed
 - [ ] **13.9** — `<meta name="theme-color">` confirmed
-- [ ] **13.10** — Connect repo to Vercel, add all env vars, deploy + verify production URL
+- [x] **13.10** — Deployed to Vercel ✅ → argentina-2026-mandalaoui.vercel.app
 
 ---
 
@@ -330,5 +330,5 @@
 | 10 — World Cup | ✅ Complete | Live API, 2026 stages (LAST_32/LAST_16), nested accordions, songs |
 | 11 — Photos (drawer) | ✅ Complete | PhotoGallery + Supabase + lightbox + delete |
 | 12 — PWA | ✅ Complete | manifest, SW, icons, meta tags |
-| 13 — QA + Vercel | 🔲 | |
+| 13 — QA + Vercel | ✅ Complete | argentina-2026-mandalaoui.vercel.app |
 | 14 — Travel Journal | ✅ Complete | Page 8, collapsible days, GPS, modal, home shortcut |
