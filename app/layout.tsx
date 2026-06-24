@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -12,6 +13,22 @@ const heebo = Heebo({
 export const metadata: Metadata = {
   title: "Argentina 2026 Hub",
   description: "המדריך האישי לטיול בארגנטינה 2026",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Argentina 26",
+  },
+  icons: {
+    icon: "/icons/icon-192.png",
+    apple: "/icons/icon-192.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#74ACDF",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -26,6 +43,7 @@ export default function RootLayout({
         <div className="flex-1 pt-14">
           {children}
         </div>
+        <ServiceWorkerRegister />
       </body>
     </html>
   );
