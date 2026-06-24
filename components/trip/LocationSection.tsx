@@ -40,7 +40,7 @@ export default function LocationSection({ group, days, defaultOpen = true }: Pro
             <DayRow
               key={day.day}
               tripDay={day}
-              defaultOpen={i === 0}
+              defaultOpen={false}
             />
           ))}
         </div>

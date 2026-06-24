@@ -43,6 +43,7 @@ interface ActivityChecklistProps {
   storageKey: string;
   emptyMessage?: string;
   compact?: boolean;
+  showLinks?: boolean;  // show map link on activity name even in compact mode
 }
 
 export function ActivityChecklist({
@@ -50,6 +51,7 @@ export function ActivityChecklist({
   storageKey,
   emptyMessage = "אין פעילויות רשומות",
   compact = false,
+  showLinks = false,
 }: ActivityChecklistProps) {
   const { checks, toggle } = useCheckStorage(storageKey);
 
@@ -68,16 +70,28 @@ export function ActivityChecklist({
             <button
               onClick={() => toggle(act.id)}
               aria-label={done ? `בטל סימון ${act.nameHe}` : `סמן ${act.nameHe} כבוצע`}
-              className="mt-0.5 shrink-0 text-argentina hover:opacity-70 transition-opacity"
+              className="shrink-0 self-start text-argentina hover:opacity-70 transition-opacity"
+              style={{ paddingTop: compact ? "1px" : "2px" }}
             >
               {done
                 ? <CheckCircle2 size={iconSize} className="text-argentina" />
                 : <Circle size={iconSize} className="text-gray-300" />}
             </button>
             <div className="flex-1 min-w-0">
-              <p className={`${compact ? "text-xs" : "text-sm"} font-medium leading-snug ${done ? "line-through text-gray-400" : "text-navy"}`}>
-                {act.nameHe}
-              </p>
+              {showLinks && act.mapsUrl && !done ? (
+                <a
+                  href={act.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${compact ? "text-xs" : "text-sm"} font-medium leading-snug text-navy hover:underline`}
+                >
+                  {act.nameHe}
+                </a>
+              ) : (
+                <p className={`${compact ? "text-xs" : "text-sm"} font-medium leading-snug ${done ? "line-through text-gray-400" : "text-navy"}`}>
+                  {act.nameHe}
+                </p>
+              )}
               {act.notes && !done && (
                 <p className={`${compact ? "text-[11px]" : "text-xs"} text-gray-400 mt-0.5`}>{act.notes}</p>
               )}

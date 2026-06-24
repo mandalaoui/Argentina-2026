@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronRight, Moon, MapPin } from "lucide-react";
+import { ChevronRight, Moon, Utensils, Beer, Trophy } from "lucide-react";
 import { ActivityChecklist } from "./ActivityChecklist";
 import type { TripDay } from "@/data/trip-days";
 import { getDayAccommodation } from "@/data/trip-days";
@@ -36,9 +36,9 @@ export default function DayRow({ tripDay, defaultOpen = false }: Props) {
         <span className="text-xs font-medium text-navy truncate">{tripDay.locationLabel}</span>
       </button>
 
-      {/* Day content */}
       {open && (
-        <div className="px-4 pb-3 space-y-3">
+        <div className="px-4 pb-4 space-y-3 pt-1">
+
           {/* Accommodation */}
           {accommodation && accommodation.name !== "TODO — עדיין לא נבחר" && (
             <div className="flex items-start gap-2">
@@ -54,17 +54,77 @@ export default function DayRow({ tripDay, defaultOpen = false }: Props) {
             </div>
           )}
 
+          {/* Argentina match */}
+          {tripDay.matchNote && (
+            <div className="flex items-start gap-2 bg-sun/20 rounded-xl px-3 py-2">
+              <Trophy size={13} className="text-navy mt-0.5 flex-shrink-0" />
+              <span className="text-xs font-semibold text-navy">{tripDay.matchNote}</span>
+            </div>
+          )}
+
           {/* Activities checklist */}
           {tripDay.activities.length > 0 ? (
             <ActivityChecklist
               activities={tripDay.activities}
               storageKey={tripDay.activityStorageKey}
               compact
+              showLinks
               emptyMessage=""
             />
+          ) : tripDay.day === 12 ? (
+            <p className="text-xs text-gray-400">ארוחת בוקר ונסיעה לשדה התעופה 🛫</p>
           ) : (
             <p className="text-xs text-gray-400">אין פעילויות מתוכננות</p>
           )}
+
+          {/* Meal suggestion */}
+          {tripDay.meal && (
+            <div className="flex items-start gap-2 border-t border-argentina-light/60 pt-2">
+              <Utensils size={13} className="text-argentina mt-0.5 flex-shrink-0" />
+              <div>
+                {tripDay.meal.mapsUrl ? (
+                  <a
+                    href={tripDay.meal.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-navy hover:underline"
+                  >
+                    {tripDay.meal.label}
+                  </a>
+                ) : (
+                  <span className="text-xs font-semibold text-navy">{tripDay.meal.label}</span>
+                )}
+                {tripDay.meal.note && (
+                  <p className="text-xs text-gray-400 mt-0.5">{tripDay.meal.note}</p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Bar suggestion */}
+          {tripDay.bar && (
+            <div className="flex items-start gap-2">
+              <Beer size={13} className="text-argentina mt-0.5 flex-shrink-0" />
+              <div>
+                {tripDay.bar.mapsUrl ? (
+                  <a
+                    href={tripDay.bar.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-navy hover:underline"
+                  >
+                    {tripDay.bar.label}
+                  </a>
+                ) : (
+                  <span className="text-xs font-semibold text-navy">{tripDay.bar.label}</span>
+                )}
+                {tripDay.bar.note && (
+                  <p className="text-xs text-gray-400 mt-0.5">{tripDay.bar.note}</p>
+                )}
+              </div>
+            </div>
+          )}
+
         </div>
       )}
     </div>

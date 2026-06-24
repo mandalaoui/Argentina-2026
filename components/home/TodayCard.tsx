@@ -3,9 +3,9 @@ import Flag from "@/components/ui/Flag";
 import {
   getTripDayInfo,
   getCurrentDestination,
-  getTodayPlannedActivities,
   getTodayDisplayDate,
 } from "@/data/trip";
+import { getTodayTripDay } from "@/data/trip-days";
 import { ActivityChecklist } from "@/components/trip/ActivityChecklist";
 import { Calendar, MapPin, Moon } from "lucide-react";
 
@@ -16,8 +16,8 @@ export default function TodayCard() {
   if (!dayInfo || !dest) return null;
 
   const todayStr = getTodayDisplayDate();
-
-  const activities = getTodayPlannedActivities();
+  const todayTripDay = getTodayTripDay();
+  const activities = todayTripDay?.activities ?? [];
 
   return (
     <Card>
@@ -55,7 +55,7 @@ export default function TodayCard() {
         </p>
         <ActivityChecklist
           activities={activities}
-          storageKey={`today-checklist-${dayInfo.day}`}
+          storageKey={todayTripDay?.activityStorageKey ?? `activities-day-${dayInfo.day}`}
           emptyMessage="אין פעילויות מתוכננות להיום"
           compact
         />

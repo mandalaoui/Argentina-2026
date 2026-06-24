@@ -28,7 +28,7 @@ export default function TripPage() {
               key={`${group.label}-${i}`}
               group={group}
               days={groupDays}
-              defaultOpen={i === 0}
+              defaultOpen={true}
             />
           );
         })}
