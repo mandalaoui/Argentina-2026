@@ -401,4 +401,4 @@
 | 11 — Photos (drawer) | ✅ Complete | PhotoGallery + Supabase Storage + lightbox |
 | 12 — PWA | 🔲 | |
 | 13 — QA | 🔲 | |
-| 14 — Travel Journal | 🔲 Next | Page 8 — photos + location + caption diary |
+| 14 — Travel Journal | ✅ Complete | Page 8 — collapsible days, GPS, modal, home shortcut |
