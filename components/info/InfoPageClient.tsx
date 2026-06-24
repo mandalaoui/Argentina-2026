@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Backpack, Smartphone, Wallet, Wifi, AlertTriangle } from "lucide-react";
+import { Backpack, Smartphone, Wallet, Wifi, AlertTriangle, Gift } from "lucide-react";
 import Accordion, { AccordionItem } from "@/components/ui/Accordion";
 import EmergencyCard from "@/components/ui/EmergencyCard";
 import Flag from "@/components/ui/Flag";
 import PackingChecklist, { usePackingStorage } from "@/components/info/PackingChecklist";
 import AppsList from "@/components/info/AppsList";
+import GiftsList from "@/components/info/GiftsList";
 import { moneyTips, communicationTips } from "@/data/info";
 import { emergencyContacts } from "@/data/emergency";
 
@@ -45,7 +46,7 @@ export default function InfoPageClient() {
         <AccordionItem
           title={mounted ? `ציוד (${packedCount}/${total})` : "ציוד"}
           icon={<Backpack size={18} />}
-          defaultOpen
+
         >
           <PackingChecklist checks={checks} onToggle={toggle} />
         </AccordionItem>
@@ -92,6 +93,11 @@ export default function InfoPageClient() {
             )}
           </div>
         </AccordionItem>
+
+        <AccordionItem title="מתנות" icon={<Gift size={18} />}>
+          <GiftsList />
+        </AccordionItem>
+
       </Accordion>
     </main>
   );

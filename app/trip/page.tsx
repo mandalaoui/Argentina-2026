@@ -12,7 +12,7 @@ export default function TripPage() {
         <h1 className="text-2xl font-bold text-navy">הטיול שלנו</h1>
         <div className="flex items-center gap-1.5 mt-1 text-sm text-gray-400">
           <MapPin size={13} className="text-argentina" />
-          <span>01.07 – 12.07.2026 · 12 ימים</span>
+          <span>12.07.2026 – 01.07.2026 · 12 ימים</span>
         </div>
       </div>
 

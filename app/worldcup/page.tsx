@@ -24,6 +24,12 @@ export default async function WorldCupPage() {
   }
   const stagesSorted = Array.from(byStage.keys()).sort((a, b) => stageOrder(a) - stageOrder(b));
 
+  // Stage containing the next Argentina match (for auto-open)
+  const nextArgKnockoutStage = nextMatch
+    ? knockoutMatches.find((m) => m.isArgentina && new Date(m.date) > new Date())?.stage ?? null
+    : null;
+  const hasKnockoutArgentinaNext = nextArgKnockoutStage !== null;
+
   // Split watching spots by city
   const baSpts = watchingSpots.filter((s) => s.city === "Buenos Aires");
   const brcSpts = watchingSpots.filter((s) => s.city === "Bariloche");
@@ -95,13 +101,13 @@ export default async function WorldCupPage() {
       {knockoutMatches.length > 0 && (
         <div className="mb-6">
           <Accordion>
-            <AccordionItem title="לוח שלבי נוקאאוט" icon={<Trophy size={16} />}>
+            <AccordionItem title="לוח שלבי נוקאאוט" icon={<Trophy size={16} />} defaultOpen={hasKnockoutArgentinaNext}>
               <div className="space-y-2">
                 {stagesSorted.map((stage) => (
                   <AccordionItem
                     key={stage}
                     title={stageLabelHe(stage)}
-                    defaultOpen={false}
+                    defaultOpen={stage === nextArgKnockoutStage}
                     nested
                   >
                     <div className="space-y-2">
