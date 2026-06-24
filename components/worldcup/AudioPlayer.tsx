@@ -63,31 +63,8 @@ export default function AudioPlayer({ src, title }: Props) {
     <div className="bg-argentina-light/50 rounded-xl px-3 py-2.5 mt-2" dir="ltr">
       <audio ref={audioRef} src={src} preload="metadata" />
 
-      {/* Controls */}
-      <div className="flex items-center gap-2 mb-2">
-        <button onClick={() => skip(-10)} aria-label="10 שניות אחורה"
-          className="p-1 text-navy hover:text-argentina transition-colors">
-          <SkipBack size={16} />
-        </button>
-
-        <button onClick={togglePlay} aria-label={playing ? "השהה" : "נגן"}
-          className="w-9 h-9 rounded-full bg-argentina text-white flex items-center justify-center hover:opacity-90 transition-opacity flex-shrink-0">
-          {playing ? <Pause size={16} /> : <Play size={16} className="mr-[-1px]" />}
-        </button>
-
-        <button onClick={() => skip(10)} aria-label="10 שניות קדימה"
-          className="p-1 text-navy hover:text-argentina transition-colors">
-          <SkipForward size={16} />
-        </button>
-
-        {/* Time */}
-        <span className="text-xs text-gray-500 tabular-nums mr-auto">
-          {formatTime(current)} / {formatTime(duration)}
-        </span>
-      </div>
-
-      {/* Seek bar */}
-      <div className="relative">
+      {/* Seek bar — on top */}
+      <div className="mb-2">
         <input
           type="range"
           min={0}
@@ -97,9 +74,30 @@ export default function AudioPlayer({ src, title }: Props) {
           aria-label={`מיקום ב${title}`}
           className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to left, #74ACDF ${pct}%, #D1E9F6 ${pct}%)`,
+            background: `linear-gradient(to right, #74ACDF ${pct}%, #D1E9F6 ${pct}%)`,
           }}
         />
+      </div>
+
+      {/* Controls + time — controls truly centered, time absolute right */}
+      <div className="relative flex items-center justify-center">
+        <div className="flex items-center gap-2">
+          <button onClick={() => skip(-10)} aria-label="10 שניות אחורה"
+            className="p-1 text-navy hover:text-argentina transition-colors">
+            <SkipBack size={16} />
+          </button>
+          <button onClick={togglePlay} aria-label={playing ? "השהה" : "נגן"}
+            className="w-9 h-9 rounded-full bg-argentina text-white flex items-center justify-center hover:opacity-90 transition-opacity flex-shrink-0">
+            {playing ? <Pause size={16} /> : <Play size={16} className="ml-[1px]" />}
+          </button>
+          <button onClick={() => skip(10)} aria-label="10 שניות קדימה"
+            className="p-1 text-navy hover:text-argentina transition-colors">
+            <SkipForward size={16} />
+          </button>
+        </div>
+        <span className="absolute right-0 text-xs text-gray-500 tabular-nums">
+          {formatTime(current)} / {formatTime(duration)}
+        </span>
       </div>
     </div>
   );
